@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+
+    android:orientation="vertical">
+
+    //playlist portion layout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="20dp">
+
+        //playlist heading layout
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textSize="26sp"
+            android:layout_weight="1"
+            android:text="Playlist"
+            android:textStyle="bold"
+            />
+
+
+        //playlist album layout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="3"
+            android:gravity="center">
+
+            //playlist album 1
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:padding="5dp"
+                    android:src="@drawable/ic_playlist"
+                    android:background="@drawable/album_shape"
+
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Playlist1"
+                    android:layout_marginTop="5dp"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+            //playlist2
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:padding="5dp"
+                    android:src="@drawable/ic_playlist"
+                    android:background="@drawable/album_shape"
+
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Playlist2"
+                    android:layout_marginTop="5dp"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+            //playList3
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+                <androidx.appcompat.widget.AppCompatImageButton
+
+                    android:padding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_playlist"
+                    android:background="@drawable/album_shape"
+
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Playlist3"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+
+
+        </LinearLayout> //playlist album contain list end here
+    </LinearLayout>
+
+    //album layout portion starts here
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="20dp">
+
+        //album heading
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textSize="26sp"
+            android:layout_weight="1"
+            android:textAlignment="textStart"
+            android:text="Album"
+            android:textStyle="bold"
+            />
+
+
+        // album layout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="3"
+            android:gravity="center">
+
+            // album 1
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_album"
+                    android:padding="5dp"
+                    android:background="@drawable/album_shape"
+
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Indian"
+                    android:layout_marginTop="5dp"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+            //album 2
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_album"
+                    android:padding="5dp"
+                    android:background="@drawable/album_shape"
+
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="English"
+                    android:layout_marginTop="5dp"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+            //album 3
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_album"
+                    android:padding="5dp"
+                    android:background="@drawable/album_shape"
+
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Punjabi"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+        </LinearLayout> // album contain list end here
+    </LinearLayout> //album portion layout ends here
+
+    //current sound playing layout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:background="@drawable/playing_song_background"
+        android:padding="20dp">
+
+        //playlist heading layout
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="Allah Ho Allah ho"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+
+            android:textStyle="bold" />
+
+        //playlist album 1
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/current_song_btn_shape"
+            android:src="@drawable/ic_previous" />
+        //playlist album 2
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play"
+            android:layout_weight="1"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:background="@drawable/current_song_btn_shape"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            />
+        //playlist album 3
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/current_song_btn_shape"
+            android:layout_weight="1"
+            android:rotation="-180"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:src="@drawable/ic_previous" />
+
+    </LinearLayout> //current playing sound layout ends here
+
+
+</LinearLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "123153374460",
+    "project_id": "cloud-storage-task-e9866",
+    "storage_bucket": "cloud-storage-task-e9866.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123153374460:android:9aec4d3909c6647e368b79",
+        "android_client_info": {
+          "package_name": "com.harismehmood.cloud_storage_task"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123153374460-suaar02v00mv20mcunrd7fg94kqc3j69.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQJDG64j8UvIWyZdgZgtZluR4ipD4HYvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123153374460-suaar02v00mv20mcunrd7fg94kqc3j69.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
