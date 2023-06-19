@@ -87,7 +87,7 @@ fun Functionality(){
                             .wrapContentSize()
                             .clickable {
                                 times--
-                                if(times==0)
+                                if(times<=0)
                                 currentStep = 3 }
                     )
 
@@ -128,7 +128,9 @@ fun Functionality(){
                         contentDescription = "lemon start again",
                         modifier = Modifier
                             .wrapContentSize()
-                            .clickable { currentStep = 1 }
+                            .clickable {
+                               times= (2..4).random()
+                                currentStep = 1 }
                     )
 
 
