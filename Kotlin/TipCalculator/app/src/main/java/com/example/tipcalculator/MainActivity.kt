@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -12,12 +13,16 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.tipcalculator.ui.theme.TipCalculatorTheme
 import java.text.NumberFormat
+import kotlin.properties.Delegates
 
 class MainActivity : ComponentActivity() {
+            //create variable of tipPercent type double and set to null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -27,6 +32,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+
                     TipTimeLayout()
                 }
             }
@@ -36,9 +42,14 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun EditNumberField(modifier: Modifier = Modifier) {
     var amountInput by remember { mutableStateOf("") }
+    val tip = tipCalculator(amountInput.toDoubleOrNull()?:0.0)
+     //= tip.toDouble()
     TextField(
         value = amountInput,
+        singleLine=true,
+        label = { Text(stringResource(id = R.string.bill_amount))},
         onValueChange = {amountInput= it},
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         modifier = modifier
     )
 }
@@ -48,6 +59,7 @@ private fun tipCalculator(amount:Double, tipPercent:Double = 0.15):String {
 }
 @Composable
 fun TipTimeLayout(modifier: Modifier = Modifier.fillMaxSize()) {
+
     Column(
         modifier = modifier.padding(40.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -59,7 +71,9 @@ fun TipTimeLayout(modifier: Modifier = Modifier.fillMaxSize()) {
                 .padding(bottom = 16.dp)
                 .align(alignment = Alignment.Start)
         )
-        EditNumberField(modifier = Modifier.padding(bottom = 32.dp).fillMaxWidth())
+        EditNumberField(modifier = Modifier
+            .padding(bottom = 32.dp)
+            .fillMaxWidth())
         Text(
             text = stringResource(R.string.tip_amount, "$0.00"),
             style = MaterialTheme.typography.displaySmall
