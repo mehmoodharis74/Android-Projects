@@ -1,26 +1,27 @@
 package com.example.tipcalculator
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.tipcalculator.ui.theme.TipCalculatorTheme
 import java.text.NumberFormat
-import kotlin.properties.Delegates
+import kotlin.math.round
 
 class MainActivity : ComponentActivity() {
             //create variable of tipPercent type double and set to null
@@ -42,26 +43,50 @@ class MainActivity : ComponentActivity() {
     }
 }
 @Composable
-fun EditNumberField(value:String, onValueChange:(String)->Unit , modifier: Modifier = Modifier.background(Color.Blue)) {
+fun RoundSwitch(roundUp:Boolean, onCheckedChanged:(Boolean)->Unit,
+    modifier:Modifier = Modifier){
+    Row (modifier = modifier
+        .fillMaxWidth()
+        .size(50.dp),
+        verticalAlignment = Alignment.CenterVertically){
+        Text(stringResource(id  =R.string.round_up_tip))
+        Switch(modifier = Modifier.fillMaxWidth().wrapContentWidth(Alignment.End),
+            checked = roundUp, onCheckedChange = onCheckedChanged)
+        if (roundUp) {
+            Icon(
+                imageVector = Icons.Filled.CheckCircle,
+                contentDescription = "Checked",
+                modifier = Modifier.padding(start = 8.dp)
+            )
+        }
+    }
+}
+@Composable
+fun EditNumberField(value:String,label:Int, onValueChange:(String)->Unit , modifier: Modifier = Modifier) {
 
-     //= tip.toDouble()
     TextField(
         value = value,
         singleLine=true,
-        label = { Text(stringResource(id = R.string.bill_amount))},
+        label = { Text(stringResource(id = label))},
         onValueChange = onValueChange,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number, imeAction = ImeAction.Next),
         modifier = modifier
     )
 }
-private fun tipCalculator(amount:Double, tipPercent:Double = 0.15):String {
-    val tip = amount * tipPercent
+private fun tipCalculator(amount:Double, tipPercent:Double, round:Boolean):String {
+    var tip = tipPercent/100 * amount
+    if(round)
+        tip = kotlin.math.ceil(tip)
     return NumberFormat.getCurrencyInstance().format(tip)
 }
 @Composable
 fun TipTimeLayout(modifier: Modifier = Modifier.fillMaxSize()) {
     var amountInput by remember { mutableStateOf("") }
-    val tip = tipCalculator(amountInput.toDoubleOrNull()?:0.0)
+    var tipInput by remember { mutableStateOf("") }
+    var round by remember { mutableStateOf(false) }
+    val tipPercent = tipInput.toDoubleOrNull()?:0.0
+    val tip = tipCalculator(amountInput.toDoubleOrNull()?:0.0, round = round, tipPercent = tipPercent)
+
     Column(
         modifier = modifier.padding(40.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -73,7 +98,13 @@ fun TipTimeLayout(modifier: Modifier = Modifier.fillMaxSize()) {
                 .padding(bottom = 16.dp)
                 .align(alignment = Alignment.Start)
         )
-        EditNumberField(amountInput, onValueChange = {amountInput = it}, modifier = Modifier
+        EditNumberField(value = amountInput,label=R.string.bill_amount ,onValueChange = {amountInput = it}, modifier = Modifier
+            .padding(bottom = 32.dp)
+            .fillMaxWidth())
+        EditNumberField(value = tipInput,label=R.string.tip_percent, onValueChange = {tipInput = it}, modifier = Modifier
+            .padding(bottom = 32.dp)
+            .fillMaxWidth())
+        RoundSwitch(roundUp = round, onCheckedChanged ={round =it}, modifier = Modifier
             .padding(bottom = 32.dp)
             .fillMaxWidth())
         Text(
