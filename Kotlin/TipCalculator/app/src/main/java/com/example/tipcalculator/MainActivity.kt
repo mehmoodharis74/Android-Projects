@@ -3,6 +3,7 @@ package com.example.tipcalculator
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
@@ -12,6 +13,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,15 +42,14 @@ class MainActivity : ComponentActivity() {
     }
 }
 @Composable
-fun EditNumberField(modifier: Modifier = Modifier) {
-    var amountInput by remember { mutableStateOf("") }
-    val tip = tipCalculator(amountInput.toDoubleOrNull()?:0.0)
+fun EditNumberField(value:String, onValueChange:(String)->Unit , modifier: Modifier = Modifier.background(Color.Blue)) {
+
      //= tip.toDouble()
     TextField(
-        value = amountInput,
+        value = value,
         singleLine=true,
         label = { Text(stringResource(id = R.string.bill_amount))},
-        onValueChange = {amountInput= it},
+        onValueChange = onValueChange,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         modifier = modifier
     )
@@ -59,7 +60,8 @@ private fun tipCalculator(amount:Double, tipPercent:Double = 0.15):String {
 }
 @Composable
 fun TipTimeLayout(modifier: Modifier = Modifier.fillMaxSize()) {
-
+    var amountInput by remember { mutableStateOf("") }
+    val tip = tipCalculator(amountInput.toDoubleOrNull()?:0.0)
     Column(
         modifier = modifier.padding(40.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -71,11 +73,11 @@ fun TipTimeLayout(modifier: Modifier = Modifier.fillMaxSize()) {
                 .padding(bottom = 16.dp)
                 .align(alignment = Alignment.Start)
         )
-        EditNumberField(modifier = Modifier
+        EditNumberField(amountInput, onValueChange = {amountInput = it}, modifier = Modifier
             .padding(bottom = 32.dp)
             .fillMaxWidth())
         Text(
-            text = stringResource(R.string.tip_amount, "$0.00"),
+            text = stringResource(R.string.tip_amount ,tip),
             style = MaterialTheme.typography.displaySmall
         )
         Spacer(modifier = Modifier.height(150.dp))
