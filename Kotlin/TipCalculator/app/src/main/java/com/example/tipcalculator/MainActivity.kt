@@ -1,19 +1,24 @@
 package com.example.tipcalculator
 
 import android.graphics.Color
+import android.graphics.drawable.Icon
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -49,24 +54,20 @@ fun RoundSwitch(roundUp:Boolean, onCheckedChanged:(Boolean)->Unit,
         .fillMaxWidth()
         .size(50.dp),
         verticalAlignment = Alignment.CenterVertically){
-        Text(stringResource(id  =R.string.round_up_tip))
-        Switch(modifier = Modifier.fillMaxWidth().wrapContentWidth(Alignment.End),
+        Text(stringResource(id=R.string.round_up_tip))
+        Switch(modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentWidth(Alignment.End),
             checked = roundUp, onCheckedChange = onCheckedChanged)
-        if (roundUp) {
-            Icon(
-                imageVector = Icons.Filled.CheckCircle,
-                contentDescription = "Checked",
-                modifier = Modifier.padding(start = 8.dp)
-            )
-        }
+
     }
 }
 @Composable
-fun EditNumberField(value:String,label:Int, onValueChange:(String)->Unit , modifier: Modifier = Modifier) {
-
+fun EditNumberField(value:String,label:Int,icon:Int, onValueChange:(String)->Unit , modifier: Modifier = Modifier) {
     TextField(
         value = value,
         singleLine=true,
+        leadingIcon = { Icon(painter = painterResource(id = icon), null, modifier = Modifier.size(50.dp)) },
         label = { Text(stringResource(id = label))},
         onValueChange = onValueChange,
         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number, imeAction = ImeAction.Next),
@@ -88,7 +89,9 @@ fun TipTimeLayout(modifier: Modifier = Modifier.fillMaxSize()) {
     val tip = tipCalculator(amountInput.toDoubleOrNull()?:0.0, round = round, tipPercent = tipPercent)
 
     Column(
-        modifier = modifier.padding(40.dp),
+        modifier = modifier
+            .padding(40.dp)
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -98,10 +101,10 @@ fun TipTimeLayout(modifier: Modifier = Modifier.fillMaxSize()) {
                 .padding(bottom = 16.dp)
                 .align(alignment = Alignment.Start)
         )
-        EditNumberField(value = amountInput,label=R.string.bill_amount ,onValueChange = {amountInput = it}, modifier = Modifier
+        EditNumberField(value = amountInput,label=R.string.bill_amount, icon = R.drawable.ic_launcher_foreground ,onValueChange = {amountInput = it}, modifier = Modifier
             .padding(bottom = 32.dp)
             .fillMaxWidth())
-        EditNumberField(value = tipInput,label=R.string.tip_percent, onValueChange = {tipInput = it}, modifier = Modifier
+        EditNumberField(value = tipInput,label=R.string.tip_percent, icon = R.drawable.ic_launcher_foreground, onValueChange = {tipInput = it}, modifier = Modifier
             .padding(bottom = 32.dp)
             .fillMaxWidth())
         RoundSwitch(roundUp = round, onCheckedChanged ={round =it}, modifier = Modifier
