@@ -6,11 +6,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
+import androidx.compose.runtime.*
 
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -44,16 +43,18 @@ class MainActivity : ComponentActivity() {
 }
 @Composable
 fun SimpleButton(text:String, function:()->Unit) {
-    Button(onClick = {
-        function()
-        //your onclick code here
-    },
-    modifier = Modifier.widthIn(120.dp)) {
-        Text(text = text, fontSize = 18.sp, modifier = Modifier.padding(2.dp))
-    }
+
 }
 @Composable
 fun ArtSpaceMain( ) {
+
+var images = arrayListOf<Int>(R.drawable.a1,R.drawable.a2,R.drawable.a3)
+    var index by remember { mutableStateOf(0) }
+    if(index<0){
+        index*=-1
+        index--}
+    if(index>2)
+        index=0
 
     Column(horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
@@ -65,7 +66,7 @@ fun ArtSpaceMain( ) {
             .weight(5f)
             .shadow(20.dp)
             ){Column{
-            Image(painterResource(id = R.drawable.a1), contentDescription = "Image of art space",
+            Image(painterResource(id =images[index]), contentDescription = "Image of art space",
                  contentScale = ContentScale.Crop, modifier = Modifier.fillMaxSize()
             )
         }}
@@ -87,8 +88,20 @@ fun ArtSpaceMain( ) {
         Column(modifier = Modifier.padding(5.dp), verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally){
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly){
-                SimpleButton(text = stringResource(id = R.string.previous), moveSlide(1) )
-                SimpleButton(text = stringResource(id = R.string.next), moveSlide(-1))
+                Button(onClick = {
+                    //your onclick code here
+                    index--
+                },
+                    modifier = Modifier.widthIn(120.dp)) {
+                    Text(text = stringResource(id = R.string.previous), fontSize = 18.sp)
+                }
+                Button(onClick = {
+                    //your onclick code here
+                    index++
+                },
+                    modifier = Modifier.widthIn(120.dp)) {
+                    Text(text = stringResource(id = R.string.next), fontSize = 18.sp)
+                }
             }
 
         }
@@ -96,11 +109,7 @@ fun ArtSpaceMain( ) {
 }
 val String.color
 get() = Color(parseColor(this))
-fun moveSlide(value:Int)={
 
-
-
-}
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
