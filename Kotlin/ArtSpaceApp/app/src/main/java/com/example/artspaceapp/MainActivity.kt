@@ -1,5 +1,6 @@
 package com.example.artspaceapp
 
+import android.graphics.Color.parseColor
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -53,14 +54,16 @@ fun SimpleButton(text:String, function:()->Unit) {
 }
 @Composable
 fun ArtSpaceMain( ) {
+
     Column(horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(30.dp)
                 ) {
         Column(modifier = Modifier
-            .background(Color.LightGray).padding(20.dp).shadow(20.dp)
+            .padding(20.dp)
             .weight(5f)
+            .shadow(20.dp)
             ){Column{
             Image(painterResource(id = R.drawable.a1), contentDescription = "Image of art space",
                  contentScale = ContentScale.Crop, modifier = Modifier.fillMaxSize()
@@ -72,7 +75,7 @@ fun ArtSpaceMain( ) {
             Column (verticalArrangement = Arrangement.Center,
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.Blue)
+                .background(color = "#dcdedc".color)
                 .padding(20.dp)
                 ){
                 Text(text = stringResource(id = R.string.artWork), fontWeight = FontWeight.Bold,
@@ -91,7 +94,10 @@ fun ArtSpaceMain( ) {
         }
     }
 }
+val String.color
+get() = Color(parseColor(this))
 fun moveSlide(value:Int)={
+
 
 
 }
