@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -73,8 +74,10 @@ fun EditNumberField(value:String,label:Int,icon:Int, onValueChange:(String)->Uni
         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number, imeAction = ImeAction.Next),
         modifier = modifier
     )
+
 }
-private fun tipCalculator(amount:Double, tipPercent:Double, round:Boolean):String {
+@VisibleForTesting
+internal fun tipCalculator(amount:Double, tipPercent:Double, round:Boolean):String {
     var tip = tipPercent/100 * amount
     if(round)
         tip = kotlin.math.ceil(tip)
