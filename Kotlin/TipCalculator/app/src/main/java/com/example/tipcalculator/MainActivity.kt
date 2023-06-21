@@ -78,7 +78,10 @@ fun EditNumberField(value:String,label:Int,icon:Int, onValueChange:(String)->Uni
 }
 @VisibleForTesting
 internal fun tipCalculator(amount:Double, tipPercent:Double, round:Boolean):String {
+
     var tip = tipPercent/100 * amount
+    if(tip <0)
+        tip = 0.00
     if(round)
         tip = kotlin.math.ceil(tip)
     return NumberFormat.getCurrencyInstance().format(tip)
