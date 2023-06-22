@@ -14,7 +14,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -66,16 +68,16 @@ fun CardFunction(){
     }}
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
-fun mainPage(modifier: Modifier){
+fun MainPage(modifier: Modifier){
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var rememberPass by remember { mutableStateOf(false) }
     Column(modifier = modifier,
     verticalArrangement = Arrangement.Center) {
         Column {
-            Text(stringResource(id = R.string.login), fontSize = 36.sp, fontWeight = FontWeight.Bold)
+            Text(stringResource(id = R.string.login), fontSize = 30.sp, fontWeight = FontWeight.SemiBold)
             Spacer(modifier = Modifier.size(36.dp))
         }
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -90,16 +92,23 @@ fun mainPage(modifier: Modifier){
                     .fillMaxWidth(), KeyboardType.Password
             )
         }
-        Column{
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(stringResource(id = R.string.remember))
+        Column(modifier = Modifier.padding(5.dp)){
+            Row(verticalAlignment = Alignment.CenterVertically
+                , horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(end = 15.dp)) {
+                Text(stringResource(id = R.string.remember), fontSize = 14.sp)
                 Switch(checked = rememberPass, onCheckedChange = {rememberPass=it}
                     , modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentWidth(Alignment.End) )
+                        .size(10.dp)
+                        .padding(end = 5.dp))
 
             }
-            Spacer(modifier = Modifier.size(20.dp))
+            Text(stringResource(id = R.string.forgotPassword)
+                , fontSize = 14.sp, color = Color.Red
+                , modifier = Modifier.padding(top = 5.dp))
+
+            Spacer(modifier = Modifier.size(40.dp))
         }
         //Icons for Google login
         Row(modifier=Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround)  {
@@ -115,14 +124,14 @@ fun mainPage(modifier: Modifier){
             Button(onClick = { /*TODO*/ }, modifier = Modifier
                 .fillMaxWidth()
                 .padding(5.dp)) {
-                Text(stringResource(id = R.string.login), fontSize = 20.sp)
+                Text(stringResource(id = R.string.login))
             }
         }
     }
 }
 @Composable
 fun LoginPage() {
-mainPage(modifier = Modifier
+MainPage(modifier = Modifier
     .fillMaxSize()
     .padding(30.dp))
 
