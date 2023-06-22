@@ -67,7 +67,7 @@ fun CardFunction(){
                 Icon(Icons.Filled.Send, contentDescription = "Google",
                 modifier = Modifier
                     .padding(start = 20.dp, end = 20.dp)
-                    .size(24.dp))
+                    .size(30.dp))
                 Text(stringResource(id = R.string.loginGoogle))
             }
 
