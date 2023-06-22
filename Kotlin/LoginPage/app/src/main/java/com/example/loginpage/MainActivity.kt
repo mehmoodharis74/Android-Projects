@@ -62,7 +62,7 @@ fun CardFunction(){
             .padding(bottom = 10.dp))
     {
         Box(modifier = Modifier
-            .padding(start = 5.dp, top = 12.dp, bottom = 12.dp, end = 5.dp)){
+            .padding(start = 5.dp, top = 14.dp, bottom = 14.dp, end = 5.dp)){
             Row {
                 Icon(Icons.Filled.Send, contentDescription = "Google",
                 modifier = Modifier
