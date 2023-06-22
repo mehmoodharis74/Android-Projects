@@ -5,4 +5,5 @@
     <string name="password">Password</string>
     <string name="remember">Remember Password</string>
     <string name="forgotPassword">Forgot Password?</string>
+    <string name="loginGoogle">Login with Google</string>
 </resources>

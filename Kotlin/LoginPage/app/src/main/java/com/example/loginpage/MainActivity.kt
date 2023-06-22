@@ -54,16 +54,22 @@ fun EditNumberField(value:String, label:Int, onValueChange:(String)->Unit,modifi
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CardFunction(){
-    Card(shape = RoundedCornerShape(10.dp),
-
+    Card(shape = RoundedCornerShape(100.dp),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 4.dp
-        ), modifier = Modifier.size(80.dp))
+            defaultElevation = 2.dp
+        ), modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 10.dp))
     {
         Box(modifier = Modifier
-            .align(Alignment.CenterHorizontally)
-            .padding(10.dp)){
-            Icon(Icons.Filled.Send, contentDescription = "Google", modifier = Modifier.fillMaxSize())
+            .padding(start = 5.dp, top = 12.dp, bottom = 12.dp, end = 5.dp)){
+            Row {
+                Icon(Icons.Filled.Send, contentDescription = "Google",
+                modifier = Modifier
+                    .padding(start = 10.dp, end = 20.dp)
+                    .size(24.dp))
+                Text(stringResource(id = R.string.loginGoogle))
+            }
 
     }}
 }
@@ -75,15 +81,23 @@ fun MainPage(modifier: Modifier){
     var password by remember { mutableStateOf("") }
     var rememberPass by remember { mutableStateOf(false) }
     Column(modifier = modifier,
-    verticalArrangement = Arrangement.Center) {
+    verticalArrangement = Arrangement.Bottom) {
+        Column(modifier=Modifier.fillMaxWidth(), verticalArrangement = Arrangement.Center)  {
+            Text(text = "Sign Up", fontSize = 30.sp, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.size(18.dp))
+            CardFunction()
+            CardFunction()
+            CardFunction()
+            Spacer(modifier = Modifier.height(30.dp))
+        }
         Column {
             Text(stringResource(id = R.string.login), fontSize = 30.sp, fontWeight = FontWeight.SemiBold)
-            Spacer(modifier = Modifier.size(36.dp))
+            Spacer(modifier = Modifier.size(10.dp))
         }
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             EditNumberField(
                 value = email, label = R.string.email, onValueChange = { email = it }, modifier = Modifier
-                    .padding(bottom = 32.dp)
+                    .padding(bottom = 20.dp)
                     .fillMaxWidth(), KeyboardType.Email
             )
             EditNumberField(
@@ -108,19 +122,13 @@ fun MainPage(modifier: Modifier){
                 , fontSize = 14.sp, color = Color.Red
                 , modifier = Modifier.padding(top = 5.dp))
 
-            Spacer(modifier = Modifier.size(40.dp))
         }
         //Icons for Google login
-        Row(modifier=Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround)  {
-            CardFunction()
-            CardFunction()
-            CardFunction()
 
-        }
         //Login Button
 
         Column {
-            Spacer(modifier = Modifier.size(50.dp))
+            Spacer(modifier = Modifier.size(20.dp))
             Button(onClick = { /*TODO*/ }, modifier = Modifier
                 .fillMaxWidth()
                 .padding(5.dp)) {
