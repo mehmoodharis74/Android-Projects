@@ -2,11 +2,14 @@ package com.example.loginpage
 
 import android.graphics.drawable.Icon
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Send
@@ -48,31 +51,28 @@ fun EditNumberField(value:String, label:Int, onValueChange:(String)->Unit,modifi
                     ,type: KeyboardType){
     TextField(value = value, onValueChange = onValueChange, singleLine = true,
         label = { Text(stringResource(id = label))},
-        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = type, imeAction = ImeAction.Next),
+        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = type,
+            imeAction = ImeAction.Next, autoCorrect = true,),
     modifier = modifier)
 }
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun CardFunction(){
-    Card(shape = RoundedCornerShape(100.dp),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 2.dp
-        ), modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 10.dp))
-    {
-        Box(modifier = Modifier
-            .padding(start = 5.dp, top = 10.dp, bottom = 10.dp, end = 5.dp)){
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(Icons.Filled.Send, contentDescription = "Google",
-                modifier = Modifier
-                    .padding(start = 20.dp, end = 20.dp)
-                    .size(30.dp))
-                Text(stringResource(id = R.string.loginGoogle))
-            }
 
-    }}
+@Composable
+fun LoginButton(text:String){
+
+            Button(modifier = Modifier.fillMaxWidth(), onClick = { /*TODO*/ }) {
+                Row(modifier = Modifier.fillMaxWidth()
+                    , horizontalArrangement = Arrangement.Start
+                    , verticalAlignment = Alignment.CenterVertically) {
+                    Icon(Icons.Filled.Send, contentDescription = "Button for $text",
+                        modifier = Modifier
+                            .padding(start = 10.dp, end = 20.dp)
+                            .size(30.dp))
+                    Text(text = text)
+                }
+
+            }
 }
+
 
 
 @Composable
@@ -85,9 +85,9 @@ fun MainPage(modifier: Modifier){
         Column(modifier=Modifier.fillMaxWidth(), verticalArrangement = Arrangement.Center)  {
             Text(text = "Sign Up", fontSize = 30.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.size(18.dp))
-            CardFunction()
-            CardFunction()
-            CardFunction()
+            LoginButton("Login With Google")
+            LoginButton("Login With Google")
+            LoginButton("Login With Google")
             Spacer(modifier = Modifier.height(30.dp))
         }
         Column {
@@ -105,6 +105,7 @@ fun MainPage(modifier: Modifier){
                     .padding(bottom = 32.dp)
                     .fillMaxWidth(), KeyboardType.Password
             )
+
         }
         Column(modifier = Modifier.padding(5.dp)){
             Row(verticalAlignment = Alignment.CenterVertically
@@ -137,6 +138,9 @@ fun MainPage(modifier: Modifier){
         }
     }
 }
+
+
+
 @Composable
 fun LoginPage() {
 MainPage(modifier = Modifier
