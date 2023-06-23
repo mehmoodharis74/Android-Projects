@@ -55,10 +55,11 @@ fun CardFunction(affirmation:AffirmationModel,modifier: Modifier= Modifier){
 @Composable
 fun Affirmation(affirmationList: List<AffirmationModel>,modifier: Modifier){
 LazyColumn(modifier = modifier){
-    items(affirmationList) {affirmationList ->
-        CardFunction(affirmation = affirmationList
+    items(affirmationList) {
+        CardFunction(affirmation = it
         ,modifier = Modifier.padding(8.dp))  }
 }
+
 }
 @Composable
 fun mainFunction(){
