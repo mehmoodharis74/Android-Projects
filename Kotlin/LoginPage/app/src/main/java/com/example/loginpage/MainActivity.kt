@@ -62,7 +62,6 @@ fun EditNumberField(value:String, label:Int, onValueChange:(String)->Unit,modifi
 
 @Composable
 fun LoginButton(text:String){
-
             Button(modifier = Modifier.fillMaxWidth().padding(bottom = 5.dp), onClick = { /*TODO*/ }) {
                 Row(modifier = Modifier.fillMaxWidth().padding(5.dp)
                     , horizontalArrangement = Arrangement.Start
