@@ -23,6 +23,8 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -53,20 +55,22 @@ fun EditNumberField(value:String, label:Int, onValueChange:(String)->Unit,modifi
         label = { Text(stringResource(id = label))},
         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = type,
             imeAction = ImeAction.Next, autoCorrect = true,),
+    visualTransformation = if (type == KeyboardType.Password) PasswordVisualTransformation() else VisualTransformation.None,
     modifier = modifier)
 }
+
 
 @Composable
 fun LoginButton(text:String){
 
-            Button(modifier = Modifier.fillMaxWidth(), onClick = { /*TODO*/ }) {
-                Row(modifier = Modifier.fillMaxWidth()
+            Button(modifier = Modifier.fillMaxWidth().padding(bottom = 5.dp), onClick = { /*TODO*/ }) {
+                Row(modifier = Modifier.fillMaxWidth().padding(5.dp)
                     , horizontalArrangement = Arrangement.Start
                     , verticalAlignment = Alignment.CenterVertically) {
                     Icon(Icons.Filled.Send, contentDescription = "Button for $text",
                         modifier = Modifier
                             .padding(start = 10.dp, end = 20.dp)
-                            .size(30.dp))
+                            .size(24.dp))
                     Text(text = text)
                 }
 
@@ -129,7 +133,7 @@ fun MainPage(modifier: Modifier){
         //Login Button
 
         Column {
-            Spacer(modifier = Modifier.size(20.dp))
+            Spacer(modifier = Modifier.height(20.dp))
             Button(onClick = { /*TODO*/ }, modifier = Modifier
                 .fillMaxWidth()
                 .padding(5.dp)) {
