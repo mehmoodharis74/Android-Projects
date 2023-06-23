@@ -7,9 +7,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -44,15 +47,16 @@ fun CardLayout(topic:Topic, modifier: Modifier=Modifier){
             Image(painter = painterResource(id = topic.imageId)
                 , contentDescription = stringResource(id = topic.text), modifier = Modifier
                     .fillMaxHeight()
-                    .width(68.dp))
+                    .width(68.dp), contentScale = ContentScale.Crop)
             Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 16.dp)
                 , verticalArrangement = Arrangement.SpaceBetween) {
                 Text(text = stringResource(id = topic.text),
                     modifier = Modifier.padding(bottom = 8.dp), style = MaterialTheme.typography.bodyMedium)
-                Row(horizontalArrangement = Arrangement.Center) {
+                Row(verticalAlignment = Alignment.CenterVertically,
+                ) {
                    Icon(painter = painterResource(id = topic.imageId)
                        , contentDescription = null, modifier = Modifier
-                           .size(12.dp)
+                           .width(20.dp).fillMaxHeight()
                            .padding(end = 8.dp))
                     Text(text = topic.likes.toString(), style = MaterialTheme.typography.labelMedium)
                 }
@@ -65,7 +69,7 @@ fun CardLayout(topic:Topic, modifier: Modifier=Modifier){
 fun mainFunction() {
 LazyVerticalGrid(columns = GridCells.Fixed(2)){
     items(DataSource().loadData()){
-
+            CardLayout(topic = it, modifier = Modifier.padding(8.dp))
     }
 }
 }
