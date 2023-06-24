@@ -25,7 +25,7 @@ import com.example.woof.ui.theme.WoofTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCeate(savedInstanceState)
+        super.onCreate(savedInstanceState)
         setContent {
             WoofTheme {
                 // A surface container using the 'background' color from the theme
