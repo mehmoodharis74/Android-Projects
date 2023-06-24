@@ -9,11 +9,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -46,7 +46,8 @@ class MainActivity : ComponentActivity() {
 fun WoofApp() {
     LazyColumn {
         items(dogs) {
-            DogItem(dog = it)
+            DogItem(dog = it, modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_small)))
+
         }
     }
 }
@@ -57,19 +58,23 @@ fun WoofApp() {
  * @param dog contains the data that populates the list item
  * @param modifier modifiers to set to this composable
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DogItem(
     dog: Dog,
     modifier: Modifier = Modifier
 ) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(dimensionResource(R.dimen.padding_small))
-    ) {
-        DogIcon(dog.imageResourceId)
-        DogInformation(dog.name, dog.age)
+    Card(modifier = modifier ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(dimensionResource(R.dimen.padding_small))
+        ) {
+            DogIcon(dog.imageResourceId)
+            DogInformation(dog.name, dog.age)
+        }
     }
+
 }
 
 /**
@@ -86,8 +91,11 @@ fun DogIcon(
     Image(
         modifier = modifier
             .size(dimensionResource(R.dimen.image_size))
+            .clip(MaterialTheme.shapes.small)
             .padding(dimensionResource(R.dimen.padding_small)),
         painter = painterResource(dogIcon),
+        contentScale = ContentScale.Crop,
+
 
         // Content Description is not needed here - image is decorative, and setting a null content
         // description allows accessibility services to skip this element during navigation.
@@ -123,7 +131,7 @@ fun DogInformation(
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    WoofTheme(darkTheme = false) {
+    WoofTheme(darkTheme = true) {
         WoofApp()
     }
 }
