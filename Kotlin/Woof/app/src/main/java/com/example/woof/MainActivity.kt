@@ -54,6 +54,11 @@ fun WoofApp() {
             DogItem(dog = it, modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_small))) }
         }
     }
+//fun mainFunction(){
+//    Scaffold(to) {
+//
+//    }
+//}
 
 }
 
