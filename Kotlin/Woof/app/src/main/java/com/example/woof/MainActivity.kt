@@ -54,12 +54,22 @@ fun WoofApp() {
             DogItem(dog = it, modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_small))) }
         }
     }
-//fun mainFunction(){
-//    Scaffold(to) {
-//
-//    }
-//}
 
+
+}
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun mainFunction(){
+    Scaffold(topBar = { TopBar() },
+        content = {Funa(modifier = Modifier.padding(it))}
+        )
+}
+@Composable
+fun Funa(modifier: Modifier){
+    LazyColumn{
+        items(dogs) {
+            DogItem(dog = it, modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_small))) }
+    }
 }
 
 /**
