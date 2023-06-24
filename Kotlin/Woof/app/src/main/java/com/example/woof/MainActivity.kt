@@ -131,7 +131,7 @@ fun DogInformation(
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    WoofTheme(darkTheme = true) {
+    WoofTheme(darkTheme = false) {
         WoofApp()
     }
 }
