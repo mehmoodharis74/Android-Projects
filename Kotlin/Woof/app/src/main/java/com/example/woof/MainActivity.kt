@@ -88,7 +88,12 @@ fun DogItem(
         MaterialTheme.colorScheme.tertiaryContainer)
     Card(modifier = modifier ) {
         Column(modifier = Modifier
-
+            .animateContentSize(
+                animationSpec = spring(
+                    dampingRatio = Spring.DampingRatioNoBouncy, stiffness = Spring.StiffnessLow
+                )
+            )
+            .background(color = color)
         ){
         Row(
             modifier = Modifier.fillMaxWidth()
