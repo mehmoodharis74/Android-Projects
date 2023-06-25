@@ -4,13 +4,18 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
+import androidx.annotation.OptIn
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -43,7 +48,8 @@ class MainActivity : ComponentActivity() {
 /**
  * Composable that displays an app bar and a list of dogs.
  */
-@OptIn(ExperimentalMaterial3Api::class)
+@kotlin.OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun WoofApp() {
     Scaffold (
@@ -57,20 +63,7 @@ fun WoofApp() {
 
 
 }
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun mainFunction(){
-    Scaffold(topBar = { TopBar() },
-        content = {Funa(modifier = Modifier.padding(it))}
-        )
-}
-@Composable
-fun Funa(modifier: Modifier){
-    LazyColumn{
-        items(dogs) {
-            DogItem(dog = it, modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_small))) }
-    }
-}
+
 
 /**
  * Composable that displays a list item containing a dog icon and their information.
@@ -78,12 +71,13 @@ fun Funa(modifier: Modifier){
  * @param dog contains the data that populates the list item
  * @param modifier modifiers to set to this composable
  */
-@OptIn(ExperimentalMaterial3Api::class)
+@kotlin.OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DogItem(
     dog: Dog,
     modifier: Modifier = Modifier
 ) {
+    var expanded by remember { mutableStateOf(false) }
     Card(modifier = modifier ) {
         Row(
             modifier = Modifier
@@ -92,8 +86,20 @@ fun DogItem(
         ) {
             DogIcon(dog.imageResourceId)
             DogInformation(dog.name, dog.age)
+            Spacer(modifier = Modifier.weight(1f))
+            DogIconButton(expanded = expanded, onClick = { expanded = it })
         }
-    }
+        if (expanded){
+        DogHobby(
+            hobby = dog.hobbies,
+            modifier = Modifier.padding(
+                start = dimensionResource(id = R.dimen.padding_small),
+                top = dimensionResource(id = R.dimen.padding_medium),
+                end = dimensionResource(id = R.dimen.padding_small),
+                bottom = dimensionResource(id = R.dimen.padding_medium)
+            )
+        )
+    }}
 
 }
 
@@ -164,6 +170,20 @@ fun TopBar(modifier: Modifier =Modifier){
     })
 
 
+}
+@Composable
+fun DogIconButton(expanded:Boolean, onClick:()->Unit,   modifier: Modifier=Modifier){
+    IconButton(onClick = onClick, modifier = modifier) {
+        Icon(imageVector = if(expanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown, contentDescription = null, tint = MaterialTheme.colorScheme.secondary)
+    }
+}
+
+@Composable
+fun DogHobby(@StringRes hobby, modifier: Modifier= Modifier){
+    Column(modifier = modifier) {
+        Text(stringResource(id = R.string.about), style = MaterialTheme.typography.labelSmall)
+        Text(stringResource(id = hobby), style = MaterialTheme.typography.bodyLarge)
+    }
 }
 @Preview(showBackground = true)
 @Composable
