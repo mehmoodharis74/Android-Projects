@@ -97,8 +97,7 @@ fun DogItem(
         ){
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(dimensionResource(R.dimen.padding_small))
+
         ) {
             DogIcon(dog.imageResourceId)
             DogInformation(dog.name, dog.age)
