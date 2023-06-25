@@ -93,7 +93,7 @@ fun DogItem(
                     dampingRatio = Spring.DampingRatioNoBouncy, stiffness = Spring.StiffnessLow
                 )
             )
-
+            .background(color = color)
         ){
         Row(
             modifier = Modifier.fillMaxWidth()
