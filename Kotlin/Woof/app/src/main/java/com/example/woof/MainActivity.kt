@@ -96,7 +96,8 @@ fun DogItem(
             .background(color = color)
         ){
         Row(
-            modifier = Modifier
+            modifier = Modifier.fillMaxWidth()
+                .padding(dimensionResource(R.dimen.padding_small))
 
         ) {
             DogIcon(dog.imageResourceId)
