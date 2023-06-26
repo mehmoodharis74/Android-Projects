@@ -7,6 +7,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -17,8 +19,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.superheroes.model.Model
 import com.example.superheroes.model.data
-import com.example.superheroes.model.model
+import com.example.superheroes.model.data.Heroes
 import com.example.superheroes.ui.theme.SuperheroesTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,18 +40,39 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HeroItem(hero:data){
-    Card(modifier = Modifier
-        .height(72.dp)
-        .padding(16.dp)
-        .clip(RoundedCornerShape(16.dp))
+fun SuperHero(){
+    //Scaffold(topBar = { TopBar()})
+}
+@Composable
+fun TopBar(){
+    CenterAlignedTopAppBar(title = {
+        Row {
+            Text(text = "SuperHeroes")
+        }
+    })
+
+}
+//@Composable
+//fun MyFunction(){
+//    val heroes = Heroes
+//    LazyColumn(){
+//        items(heroes){
+//            HeroItem(hero = it)
+//        }
+//    }
+//}
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun HeroItem(hero: Model,modifier: Modifier){
+    Card(modifier = modifier
         ,elevation = CardDefaults.cardElevation(defaultElevation = 2.dp) ) {
 
         Row(verticalAlignment = Alignment.CenterVertically) {
-            HeroDescription(heroName = He, heroDes = , modifier = )
-
+            HeroDescription(heroName = hero.nameRes, heroDes = hero.descriptionRes , modifier =Modifier )
+            HeroIcon(imageId = hero.imageRes)
         }
         
     }
@@ -65,10 +89,9 @@ fun HeroIcon(@DrawableRes imageId:Int){
 @Composable
 fun HeroDescription(@StringRes heroName:Int, @StringRes heroDes:Int ,modifier: Modifier){
     Column(modifier = modifier) {
-        Row {
-           Text(stringResource(id = heroName), style = MaterialTheme.typography.displaySmall)
+
+            Text(stringResource(id = heroName), style = MaterialTheme.typography.displaySmall)
             Text(stringResource(id = heroDes), style = MaterialTheme.typography.bodyLarge )
-        }
     }
 }
 @Composable
@@ -80,6 +103,9 @@ fun Greeting(name: String) {
 @Composable
 fun DefaultPreview() {
     SuperheroesTheme {
-        Greeting("Android")
+        HeroItem(hero = Model(R.string.hero1,R.string.description1,R.drawable.a1)
+            , modifier = Modifier.height(72.dp)
+            .padding(16.dp)
+            .clip(RoundedCornerShape(16.dp)))
     }
 }
