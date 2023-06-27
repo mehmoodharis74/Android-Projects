@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,7 +35,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    SuperHero()
                 }
             }
         }
@@ -44,68 +45,82 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SuperHero(){
-    //Scaffold(topBar = { TopBar()})
+    Scaffold(topBar = { TopBar() }){it->
+        val heroes = Heroes
+        LazyColumn(contentPadding = it){
+            items(heroes){
+                HeroItem(hero = it, modifier = Modifier
+                    .padding(top = 8.dp, start = 16.dp, end = 16.dp, bottom = 8.dp)
+                    .fillMaxWidth())
+            }
+        }
+    }
 }
 @Composable
 fun TopBar(){
     CenterAlignedTopAppBar(title = {
         Row {
-            Text(text = "SuperHeroes")
+            Text(text = "SuperHeroes", style = MaterialTheme.typography.displayLarge)
         }
     })
 
 }
-//@Composable
-//fun MyFunction(){
-//    val heroes = Heroes
-//    LazyColumn(){
-//        items(heroes){
-//            HeroItem(hero = it)
-//        }
-//    }
-//}
+@Composable
+fun MyFunction(){
+    val heroes = Heroes
+    LazyColumn{
+        items(heroes){
+            HeroItem(hero = it, modifier = Modifier
+                .padding(top = 8.dp, start = 16.dp, end = 16.dp, bottom = 8.dp)
+                .fillMaxWidth())
+        }
+    }
+}
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HeroItem(hero: Model,modifier: Modifier){
     Card(modifier = modifier
-        ,elevation = CardDefaults.cardElevation(defaultElevation = 2.dp) ) {
+        ,elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .padding(16.dp)
+                    .height(72.dp)
+                    .fillMaxWidth()) {
+                HeroDescription(heroName = hero.nameRes, heroDes = hero.descriptionRes , modifier = Modifier
+                    .padding(end = 16.dp)
+                    .weight(2f))
+                HeroIcon(imageId = hero.imageRes)
+            }
 
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            HeroDescription(heroName = hero.nameRes, heroDes = hero.descriptionRes , modifier =Modifier )
-            HeroIcon(imageId = hero.imageRes)
-        }
+
         
     }
 }
 @Composable
 fun HeroIcon(@DrawableRes imageId:Int){
-    Box {
+    Box(modifier = Modifier){
        Image(painter = painterResource(id = imageId), contentDescription = "Image of the superhero",
        modifier = Modifier
            .size(72.dp)
-           .clip(RoundedCornerShape(8.dp)))
+           .clip(RoundedCornerShape(8.dp)), contentScale = ContentScale.Crop)
     }
 }
 @Composable
 fun HeroDescription(@StringRes heroName:Int, @StringRes heroDes:Int ,modifier: Modifier){
     Column(modifier = modifier) {
-
             Text(stringResource(id = heroName), style = MaterialTheme.typography.displaySmall)
             Text(stringResource(id = heroDes), style = MaterialTheme.typography.bodyLarge )
     }
 }
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     SuperheroesTheme {
-        HeroItem(hero = Model(R.string.hero1,R.string.description1,R.drawable.a1)
-            , modifier = Modifier.height(72.dp)
-            .padding(16.dp)
-            .clip(RoundedCornerShape(16.dp)))
+        HeroItem(hero = Model(R.string.hero4,R.string.description4,R.drawable.a4)
+            , modifier = Modifier
+                .clip(RoundedCornerShape(16.dp)))
     }
 }
