@@ -71,8 +71,7 @@ fun MyFunction(){
     LazyColumn{
         items(heroes){
             HeroItem(hero = it, modifier = Modifier
-                .padding(top = 8.dp, start = 16.dp, end = 16.dp, bottom = 8.dp)
-                .fillMaxWidth())
+               )
         }
     }
 }
