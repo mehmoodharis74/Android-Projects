@@ -1,3 +1,128 @@
 <resources>
     <string name="app_name">Thirty Days of Wellness</string>
+
+        <string name="day1_title">Day 1: Morning Meditation</string>
+        <string name="day2_title">Day 2: Healthy Breakfast</string>
+        <string name="day3_title">Day 3: Mindful Walking</string>
+        <string name="day4_title">Day 4: Yoga for Relaxation</string>
+        <string name="day5_title">Day 5: Journaling Practice</string>
+        <string name="day6_title">Day 6: Fitness Challenge</string>
+        <string name="day7_title">Day 7: Digital Detox</string>
+        <string name="day8_title">Day 8: Gratitude Exercise</string>
+        <string name="day9_title">Day 9: Healthy Recipe</string>
+        <string name="day10_title">Day 10: Self-Care Ritual</string>
+        <string name="day11_title">Day 11: Stress Management Techniques</string>
+        <string name="day12_title">Day 12: Hydration Reminder</string>
+        <string name="day13_title">Day 13: Stretching Routine</string>
+        <string name="day14_title">Day 14: Mindful Eating</string>
+        <string name="day15_title">Day 15: Nature Walk</string>
+        <string name="day16_title">Day 16: Creative Expression</string>
+        <string name="day17_title">Day 17: Breathing Exercises</string>
+        <string name="day18_title">Day 18: Meditation for Sleep</string>
+        <string name="day19_title">Day 19: Healthy Snack Idea</string>
+        <string name="day20_title">Day 20: Positive Affirmations</string>
+        <string name="day21_title">Day 21: Exercise Challenge</string>
+        <string name="day22_title">Day 22: Mental Health Check-In</string>
+        <string name="day23_title">Day 23: Self-Reflection Activity</string>
+        <string name="day24_title">Day 24: Mindfulness in Daily Activities</string>
+        <string name="day25_title">Day 25: Relaxation Techniques</string>
+        <string name="day26_title">Day 26: Healthy Lunch Option</string>
+        <string name="day27_title">Day 27: Gratitude Journaling</string>
+        <string name="day28_title">Day 28: Strength Training Workout</string>
+        <string name="day29_title">Day 29: Mindful Evening Routine</string>
+        <string name="day30_title">Day 30: Celebration and Reflection</string>
+
+
+        <!-- Day 1 -->
+        <string name="day1_description">Start your day with a peaceful meditation session to relax your mind and set positive intentions for the day.</string>
+
+        <!-- Day 2 -->
+        <string name="day2_description">Discover and try out a nutritious breakfast recipe that will fuel your body and provide a healthy start to your day.</string>
+
+        <!-- Day 3 -->
+        <string name="day3_description">Engage in a mindful walking practice to connect with nature, increase your awareness, and promote overall well-being.</string>
+
+        <!-- Day 4 -->
+        <string name="day4_description">Unwind and rejuvenate your body and mind with a calming yoga session focused on relaxation and stress relief.</string>
+
+        <!-- Day 5 -->
+        <string name="day5_description">Spend some time journaling to express your thoughts, emotions, and experiences, promoting self-reflection and personal growth.</string>
+
+        <!-- Day 6 -->
+        <string name="day6_description">Challenge yourself with a fitness activity of your choice, pushing your limits and improving your physical well-being.</string>
+
+        <!-- Day 7 -->
+        <string name="day7_description">Take a break from technology and engage in activities that promote digital detox, allowing yourself to unwind and disconnect.</string>
+
+        <!-- Day 8 -->
+        <string name="day8_description">Practice gratitude by reflecting on the things you are thankful for and cultivating a positive mindset.</string>
+
+        <!-- Day 9 -->
+        <string name="day9_description">Explore a delicious and nutritious recipe that promotes a healthy lifestyle and supports your overall well-being.</string>
+
+        <!-- Day 10 -->
+        <string name="day10_description">Indulge in a self-care ritual, pampering yourself and prioritizing activities that promote relaxation and self-love.</string>
+
+        <!-- Day 11 -->
+        <string name="day11_description">Learn and practice techniques to manage stress effectively, reducing its impact on your mental and physical health.</string>
+
+        <!-- Day 12 -->
+        <string name="day12_description">Stay hydrated throughout the day by setting reminders and maintaining a healthy water intake for optimal well-being.</string>
+
+        <!-- Day 13 -->
+        <string name="day13_description">Incorporate stretching exercises into your daily routine to improve flexibility, prevent muscle tension, and promote mobility.</string>
+
+        <!-- Day 14 -->
+        <string name="day14_description">Cultivate mindfulness while eating, savoring each bite, and paying attention to the nourishment and enjoyment food provides.</string>
+
+        <!-- Day 15 -->
+        <string name="day15_description">Take a refreshing nature walk, immersing yourself in the beauty of the outdoors and benefiting from its calming effects.</string>
+
+        <!-- Day 16 -->
+        <string name="day16_description">Engage in a creative activity that allows self-expression, such as painting, writing, or playing a musical instrument.</string>
+
+        <!-- Day 17 -->
+        <string name="day17_description">Practice deep breathing exercises to reduce stress, increase relaxation, and enhance overall well-being.</string>
+
+        <!-- Day 18 -->
+        <string name="day18_description">Wind down and prepare for a restful sleep with a guided meditation practice designed to promote deep relaxation.</string>
+
+        <!-- Day 19 -->
+        <string name="day19_description">Discover and enjoy a healthy snack option that provides nourishment and satisfies your cravings in a nutritious way.</string>
+
+        <!-- Day 20 -->
+        <string name="day20_description">Embrace positive affirmations, repeating empowering statements that boost self-confidence and foster a positive mindset.</string>
+
+        <!-- Day 21 -->
+        <string name="day21_description">Take on an exercise challenge to push yourself physically, improve endurance, and reach new fitness milestones.</string>
+
+        <!-- Day 22 -->
+        <string name="day22_description">Check in with your mental health, reflect on your emotions, and practice self-care strategies to promote emotional well-being.</string>
+
+        <!-- Day 23 -->
+        <string name="day23_description">Engage in a self-reflection activity, exploring your goals, values, and aspirations to gain clarity and direction in life.</string>
+
+        <!-- Day 24 -->
+        <string name="day24_description">Infuse mindfulness into your daily activities, bringing awareness and focus to the present moment for a more fulfilling experience.</string>
+
+        <!-- Day 25 -->
+        <string name="day25_description">Learn and practice relaxation techniques such as deep relaxation exercises or guided imagery to release tension and unwind.</string>
+
+        <!-- Day 26 -->
+        <string name="day26_description">Discover a healthy lunch option that nourishes your body with essential nutrients and supports your overall well-being.</string>
+
+        <!-- Day 27 -->
+        <string name="day27_description">Cultivate gratitude by keeping a journal and reflecting on the things you appreciate and are grateful for in your life.</string>
+
+        <!-- Day 28 -->
+        <string name="day28_description">Engage in a strength training workout to build muscle, improve strength, and enhance your overall physical fitness.</string>
+
+        <!-- Day 29 -->
+        <string name="day29_description">Establish a mindful evening routine that promotes relaxation, restful sleep, and prepares you for a rejuvenating night.</string>
+
+        <!-- Day 30 -->
+        <string name="day30_description">Celebrate the completion of your wellness journey, reflect on your progress, and acknowledge the positive changes you've made in your life.</string>
+
+
+
 </resources>
