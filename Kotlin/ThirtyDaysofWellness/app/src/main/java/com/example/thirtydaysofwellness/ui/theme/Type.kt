@@ -33,7 +33,7 @@ val Typography = Typography(
     displayMedium = TextStyle(
         fontFamily = Poppins,
         fontWeight = FontWeight.Bold,
-        fontSize = 20.sp
+        fontSize = 28.sp
     ),
     displaySmall = TextStyle(
         fontFamily = Poppins,

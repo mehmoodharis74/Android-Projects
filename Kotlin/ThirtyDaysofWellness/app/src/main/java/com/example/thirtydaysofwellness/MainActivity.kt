@@ -1,5 +1,6 @@
 package com.example.thirtydaysofwellness
 
+import android.icu.text.CaseMap
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,6 +10,7 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -36,7 +38,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    Main()
                 }
             }
         }
@@ -47,8 +49,15 @@ class MainActivity : ComponentActivity() {
 fun DayItem(day: DayModel, modifier: Modifier){
     var expanded by remember { mutableStateOf(false) }
     Card(modifier = modifier, elevation = CardDefaults.cardElevation(2.dp), shape = MaterialTheme.shapes.medium){
-        Column(modifier = Modifier.clickable { expanded = !expanded }.padding(12.dp).animateContentSize(
-            animationSpec = spring(dampingRatio = Spring.DampingRatioNoBouncy, stiffness = Spring.StiffnessLow ))){
+        Column(modifier = Modifier
+            .clickable { expanded = !expanded }
+            .padding(12.dp)
+            .animateContentSize(
+                animationSpec = spring(
+                    dampingRatio = Spring.DampingRatioNoBouncy,
+                    stiffness = Spring.StiffnessLow
+                )
+            )){
             DayFirstSection(day = day.day, title = day.title, image = day.imageRes, modifier = Modifier)
             if(expanded){
             DaySecondSection(description = day.description, modifier = Modifier.padding(bottom = 8.dp, top = 16.dp))
@@ -67,7 +76,8 @@ fun DayFirstSection(day:Int, @StringRes title:Int, @DrawableRes image:Int, modif
         Image(painter = painterResource(id = image), contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(200.dp).clip(MaterialTheme.shapes.medium), contentScale = ContentScale.Crop)
+                .height(200.dp)
+                .clip(MaterialTheme.shapes.medium), contentScale = ContentScale.Crop)
     }
 }
 @Composable
@@ -95,11 +105,15 @@ fun Main(){
 
 @Composable
 fun TopBar(){
-    Row{
-        Text(text = "30 Days of Wellness", style = MaterialTheme.typography.displayLarge,
-        modifier = Modifier.padding(start = 16.dp))
-    }
-}
+    SmallTopAppBar(title = { Text(text = "30 Days of Wellness", style = MaterialTheme.typography.displayMedium,
+        modifier = Modifier)}) }
+//    Row(modifier = Modifier
+//        .fillMaxWidth()
+//        .padding(4.dp)
+//        .background(MaterialTheme.colorScheme.secondary)){
+//
+//    }
+//}
 
 
 @Preview(showBackground = true)
