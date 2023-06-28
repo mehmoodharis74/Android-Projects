@@ -8,6 +8,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -78,7 +79,7 @@ fun Main(){
     Scaffold(topBar = {TopBar()}) { it ->
         LazyColumn(contentPadding = it){
             items(days){
-                DayItem(day = days, modifier = Modifier.padding(horizontal = 16.dp))
+                DayItem(day = it, modifier = Modifier.padding(horizontal = 16.dp))
             }
         }
 
