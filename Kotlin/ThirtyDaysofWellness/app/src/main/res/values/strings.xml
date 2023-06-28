@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Thirty Days of Wellness</string>
 
-        <string name="day1_title">Day 1: Morning Meditation</string>
-        <string name="day2_title">Day 2: Healthy Breakfast</string>
-        <string name="day3_title">Day 3: Mindful Walking</string>
-        <string name="day4_title">Day 4: Yoga for Relaxation</string>
-        <string name="day5_title">Day 5: Journaling Practice</string>
-        <string name="day6_title">Day 6: Fitness Challenge</string>
-        <string name="day7_title">Day 7: Digital Detox</string>
+        <string name="day1_title">Morning Meditation</string>
+        <string name="day2_title">Healthy Breakfast</string>
+        <string name="day3_title">Mindful Walking</string>
+        <string name="day4_title">Yoga for Relaxation</string>
+        <string name="day5_title">Journaling Practice</string>
+        <string name="day6_title">Fitness Challenge</string>
+        <string name="day7_title">Digital Detox</string>
         <string name="day8_title">Day 8: Gratitude Exercise</string>
         <string name="day9_title">Day 9: Healthy Recipe</string>
         <string name="day10_title">Day 10: Self-Care Ritual</string>
@@ -119,10 +119,6 @@
 
         <!-- Day 29 -->
         <string name="day29_description">Establish a mindful evening routine that promotes relaxation, restful sleep, and prepares you for a rejuvenating night.</string>
-
-        <!-- Day 30 -->
-        <string name="day30_description">Celebrate the completion of your wellness journey, reflect on your progress, and acknowledge the positive changes you've made in your life.</string>
-
 
 
 </resources>

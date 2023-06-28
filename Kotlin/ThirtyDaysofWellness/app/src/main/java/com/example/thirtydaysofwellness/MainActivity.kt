@@ -5,16 +5,19 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,13 +45,15 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DayItem(day: DayModel, modifier: Modifier){
-    val expanded by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
     Card(modifier = modifier, elevation = CardDefaults.cardElevation(2.dp), shape = MaterialTheme.shapes.medium){
-        Column{
+        Column(modifier = Modifier.clickable { expanded = !expanded }.padding(12.dp).animateContentSize(
+            animationSpec = spring(dampingRatio = Spring.DampingRatioNoBouncy, stiffness = Spring.StiffnessLow ))){
             DayFirstSection(day = day.day, title = day.title, image = day.imageRes, modifier = Modifier)
-            if(expanded)
+            if(expanded){
             DaySecondSection(description = day.description, modifier = Modifier.padding(bottom = 8.dp, top = 16.dp))
-        }
+
+        }}
     }
 }
 @Composable
@@ -58,11 +63,11 @@ fun DayFirstSection(day:Int, @StringRes title:Int, @DrawableRes image:Int, modif
             style = MaterialTheme.typography.bodyLarge)
         Text(
             stringResource(id = title), modifier = Modifier.padding(bottom = 16.dp),
-            style = MaterialTheme.typography.displayLarge)
+            style = MaterialTheme.typography.headlineMedium)
         Image(painter = painterResource(id = image), contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(200.dp))
+                .height(200.dp).clip(MaterialTheme.shapes.medium), contentScale = ContentScale.Crop)
     }
 }
 @Composable
@@ -79,7 +84,7 @@ fun Main(){
     Scaffold(topBar = {TopBar()}) { it ->
         LazyColumn(contentPadding = it){
             items(days){
-                DayItem(day = it, modifier = Modifier.padding(horizontal = 16.dp))
+                DayItem(day = it, modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp))
             }
         }
 
@@ -91,7 +96,8 @@ fun Main(){
 @Composable
 fun TopBar(){
     Row{
-        Text(text = "30 Days of Wellness")
+        Text(text = "30 Days of Wellness", style = MaterialTheme.typography.displayLarge,
+        modifier = Modifier.padding(start = 16.dp))
     }
 }
 
@@ -100,7 +106,7 @@ fun TopBar(){
 @Composable
 fun DefaultPreview() {
     ThirtyDaysOfWellnessTheme {
-        //Main()
-    DayItem(day = Days[0], modifier = Modifier.padding(horizontal = 16.dp))
+        Main()
+   // DayItem(day = Days[0], modifier = Modifier.padding(horizontal = 16.dp))
     }
 }
