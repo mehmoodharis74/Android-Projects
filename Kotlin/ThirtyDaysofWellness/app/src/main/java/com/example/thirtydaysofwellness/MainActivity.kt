@@ -101,6 +101,6 @@ fun TopBar(){
 fun DefaultPreview() {
     ThirtyDaysOfWellnessTheme {
         //Main()
-
+    DayItem(day = Days[0], modifier = Modifier.padding(horizontal = 16.dp))
     }
 }
