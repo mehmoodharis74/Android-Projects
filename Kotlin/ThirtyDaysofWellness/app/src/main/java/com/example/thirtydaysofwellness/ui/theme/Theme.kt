@@ -104,9 +104,11 @@ fun ThirtyDaysOfWellnessTheme(
                 activity.window.navigationBarColor = colorScheme.primary.copy(alpha = 0.08f).compositeOver(colorScheme.surface.copy()).toArgb()
                 activity.window.statusBarColor = colorScheme.background.toArgb()
                 ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = !darkTheme
-
-
             }
+            else
+            {
+                activity.window.navigationBarColor = colorScheme.primary.copy(alpha = 0.08f).compositeOver(colorScheme.surface.copy()).toArgb()
+                activity.window.statusBarColor = colorScheme.background.toArgb()}
         }
     }
 
