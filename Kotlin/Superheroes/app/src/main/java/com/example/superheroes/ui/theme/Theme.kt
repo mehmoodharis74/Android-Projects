@@ -6,6 +6,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -88,11 +89,16 @@ fun SuperheroesTheme(
         darkTheme -> DarkColors
         else -> LightColors
     }
+
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
-            (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
-            ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
+            val activity  = view.context as Activity
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                activity.window.navigationBarColor = colorScheme.primary.copy(alpha = 0.08f).compositeOver(colorScheme.surface.copy()).toArgb()
+                activity.window.statusBarColor = colorScheme.background.toArgb()
+                ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = !darkTheme
+            }
         }
     }
 
