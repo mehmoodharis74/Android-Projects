@@ -109,3 +109,10 @@ fun TopBar(){
 
 
 
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    ThirtyDaysOfWellnessTheme {
+        Main()
+    }
+}
