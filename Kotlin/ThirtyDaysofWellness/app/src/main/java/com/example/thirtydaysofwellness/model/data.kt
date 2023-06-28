@@ -112,12 +112,7 @@ object data {
             imageRes = R.drawable.day6,
             description = R.string.day18_description
         ),
-        DayModel(
-            day = 19,
-            title = R.string.day19_title,
-            imageRes = R.drawable.day1,
-            description = R.string.day19_description
-        ),
+
         DayModel(
             day = 20,
             title = R.string.day20_title,
