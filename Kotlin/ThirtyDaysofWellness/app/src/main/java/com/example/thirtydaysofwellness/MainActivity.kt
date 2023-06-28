@@ -1,6 +1,6 @@
 package com.example.thirtydaysofwellness
 
-import android.icu.text.CaseMap
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,7 +10,6 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -107,13 +106,7 @@ fun Main(){
 fun TopBar(){
     SmallTopAppBar(title = { Text(text = "30 Days of Wellness", style = MaterialTheme.typography.displayMedium,
         modifier = Modifier)}) }
-//    Row(modifier = Modifier
-//        .fillMaxWidth()
-//        .padding(4.dp)
-//        .background(MaterialTheme.colorScheme.secondary)){
-//
-//    }
-//}
+
 
 
 @Preview(showBackground = true)
@@ -121,6 +114,5 @@ fun TopBar(){
 fun DefaultPreview() {
     ThirtyDaysOfWellnessTheme {
         Main()
-   // DayItem(day = Days[0], modifier = Modifier.padding(horizontal = 16.dp))
     }
 }
