@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.googleloginbutton.ui.theme.GoogleLoginButtonTheme
 
@@ -22,22 +23,22 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    GoogleSignUpButton()
                 }
             }
         }
     }
 }
-
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun GoogleSignUpButton() {
+
 }
+
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     GoogleLoginButtonTheme {
-        Greeting("Android")
+        GoogleSignUpButton()
     }
 }
