@@ -81,13 +81,8 @@ fun GoogleSignUpButton() {
                             .size(16.dp),
                         color = MaterialTheme.colorScheme.primary, strokeWidth = 2.dp,
                     )
-                    GlobalScope.launch {
-                        // Wait for 3 seconds
-                        delay(3000)
-
-                        // Change 'clicked' to false
-                        clicked = false
-                    }
+                    for(x in 1..50000){}
+                    clicked = false
                 }
 
 
