@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -37,29 +38,31 @@ class MainActivity : ComponentActivity() {
 fun GoogleSignUpButton() {
     var clicked by remember { mutableStateOf(false) }
     Surface(modifier = Modifier
-        .border(1.dp, Color.Gray)
-        .height(36.dp)
+
         .clickable(onClick = { clicked = !clicked })
         .animateContentSize(animationSpec = tween(durationMillis = 5, delayMillis = 1))
-        , shape = MaterialTheme.shapes.medium) {
+        , shape = MaterialTheme.shapes.small) {
 
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Row(verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.border(1.dp, Color.Gray).padding(start = 16.dp, end = 16.dp,
+        top = 12.dp, bottom = 12.dp)
+            ) {
 
             Icon(painter = painterResource(id = R.drawable.google)
                 , contentDescription ="Google Icon", tint = Color.Unspecified ,
             modifier = Modifier
-                .padding(start = 12.dp)
                 .size(18.dp))
             Spacer(modifier = Modifier.width(8.dp))
-            Text(text = "Sign Up with Google",
+            Text(
+                stringResource(id = if(!clicked)R.string.signup else R.string.creating_account),
                 style = MaterialTheme.typography.bodySmall)
             if(clicked){
                 CircularProgressIndicator(modifier = Modifier
-                    .padding(start = 12.dp).size(16.dp)
+                    .padding(start = 12.dp)
+                    .size(16.dp)
                     , color = MaterialTheme.colorScheme.primary, strokeWidth = 2.dp,
                 )
             }
-            Spacer(modifier = Modifier.width(16.dp))
 
 
 
