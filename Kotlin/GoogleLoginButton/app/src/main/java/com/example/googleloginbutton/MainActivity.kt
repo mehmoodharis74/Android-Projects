@@ -78,8 +78,8 @@ fun GoogleSignUpButton() {
                             .size(16.dp),
                         color = MaterialTheme.colorScheme.primary, strokeWidth = 2.dp,
                     )
-                    for(x in 1..50000){}
-                    clicked = false
+//                    for(x in 1..5000000){}
+//                    clicked = false
                 }
 
 
