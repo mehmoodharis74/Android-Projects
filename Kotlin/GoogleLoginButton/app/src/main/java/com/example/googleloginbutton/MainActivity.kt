@@ -24,6 +24,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.googleloginbutton.ui.theme.GoogleLoginButtonTheme
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +58,7 @@ fun GoogleSignUpButton() {
                         start = 16.dp, end = 16.dp,
                         top = 12.dp, bottom = 12.dp
                     )
-                    .animateContentSize(animationSpec = tween(durationMillis = 5, delayMillis = 1))
+                    .animateContentSize(animationSpec = tween(durationMillis = 300, delayMillis = 1))
 
             ) {
 
@@ -77,6 +81,13 @@ fun GoogleSignUpButton() {
                             .size(16.dp),
                         color = MaterialTheme.colorScheme.primary, strokeWidth = 2.dp,
                     )
+                    GlobalScope.launch {
+                        // Wait for 3 seconds
+                        delay(3000)
+
+                        // Change 'clicked' to false
+                        clicked = false
+                    }
                 }
 
 
