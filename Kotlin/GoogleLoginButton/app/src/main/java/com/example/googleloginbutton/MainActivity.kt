@@ -5,13 +5,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 
 
 import androidx.compose.ui.graphics.Color
@@ -34,38 +37,50 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GoogleSignUpButton() {
     var clicked by remember { mutableStateOf(false) }
-    Surface(modifier = Modifier
+    Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center
+    , horizontalAlignment = Alignment.CenterHorizontally
+        ) {
 
-        .clickable(onClick = { clicked = !clicked })
-        .animateContentSize(animationSpec = tween(durationMillis = 5, delayMillis = 1))
-        , shape = MaterialTheme.shapes.small) {
+        Surface(onClick = {clicked = !clicked}) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.border(1.dp, Color.Gray, shape = MaterialTheme.shapes.small)
+                    .padding(
+                        start = 16.dp, end = 16.dp,
+                        top = 12.dp, bottom = 12.dp
+                    )
+                    .animateContentSize(animationSpec = tween(durationMillis = 5, delayMillis = 1))
 
-        Row(verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.border(1.dp, Color.Gray).padding(start = 16.dp, end = 16.dp,
-        top = 12.dp, bottom = 12.dp)
             ) {
 
-            Icon(painter = painterResource(id = R.drawable.google)
-                , contentDescription ="Google Icon", tint = Color.Unspecified ,
-            modifier = Modifier
-                .size(18.dp))
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(
-                stringResource(id = if(!clicked)R.string.signup else R.string.creating_account),
-                style = MaterialTheme.typography.bodySmall)
-            if(clicked){
-                CircularProgressIndicator(modifier = Modifier
-                    .padding(start = 12.dp)
-                    .size(16.dp)
-                    , color = MaterialTheme.colorScheme.primary, strokeWidth = 2.dp,
+                Icon(
+                    painter = painterResource(id = R.drawable.google),
+                    contentDescription = "Google Icon",
+                    tint = Color.Unspecified,
+                    modifier = Modifier
+                        .size(18.dp)
                 )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    stringResource(id = if (!clicked) R.string.signup else R.string.creating_account),
+                    style = MaterialTheme.typography.bodySmall
+                )
+                if (clicked) {
+                    CircularProgressIndicator(
+                        modifier = Modifier
+                            .padding(start = 12.dp)
+                            .size(16.dp),
+                        color = MaterialTheme.colorScheme.primary, strokeWidth = 2.dp,
+                    )
+                }
+
+
             }
-
-
-
         }
 
 
