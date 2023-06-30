@@ -1,7 +1,6 @@
 package com.example.unscramble
 
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -14,7 +13,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.key.Key.Companion.K
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -23,6 +21,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import com.example.unscramble.ui.theme.UnscrambleTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,16 +36,74 @@ class MainActivity : ComponentActivity() {
     }
 }
 //create lambda function to call in submit button
+@Composable
+fun DialogFunction(title: Int, message: Int, success:Int, exit: Int) {
 
-val submit:()->Unit={
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .background(Color.White)
+        .clip(RoundedCornerShape(8.dp))
+        .padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            stringResource(id = title),
+            style = MaterialTheme.typography.labelLarge,
+            color = Color.Gray,
+            modifier = Modifier,
+            textAlign = TextAlign.Center
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        Text(
+            stringResource(id = message),
+            style = MaterialTheme.typography.labelMedium,
+            color = Color.Gray,
+            modifier = Modifier,
+            textAlign = TextAlign.Center
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        TextButton(modifier = Modifier.fillMaxWidth(), onClick = { /*TODO*/ }) {
+            Text(stringResource(id = success))
+        }
+        Spacer(modifier = Modifier.height(10.dp))
+        TextButton(modifier = Modifier.fillMaxWidth(), onClick = { /*TODO*/ }) {
+            Text(stringResource(id = exit))
+        }
+    }
+}
+//create submit lambda function that takkd input paramefer of string
+@Composable
+fun SubmitFunctionality() {
+    val submit: (input: String, input_word: Int) -> Unit = { s: String, i: Int ->
+//        if (s == "game") {
+//            // Generate dialog box with title "Correct" and message "You guessed correctly"
+//            DialogBox(
+//                title = R.string.correct,
+//                message = R.string.correct_message,
+//                success = R.string.submit,
+//                exit = R.string.exit
+//            )
+//        } else {
+//            // Generate dialog box with title "Incorrect" and message "You guessed incorrectly"
+//            DialogBox(
+//                title = R.string.incorrect,
+//                message = R.string.incorrect_message,
+//                success = R.string.submit,
+//                exit = R.string.exit
+//            )
+//        }
+    }
 
 }
+
 val skip:()->Unit={
 
 }
 @Composable
 fun Unscramble(modifier: Modifier){
     var input by remember { mutableStateOf("") }
+    var word by remember { mutableStateOf("game") }
     Column(modifier = modifier,
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally) {
@@ -58,9 +115,15 @@ fun Unscramble(modifier: Modifier){
 
         }
         Spacer(modifier = Modifier.height(10.dp))
-        inputCard()
+        inputCard(word = word)
         Spacer(modifier = Modifier.height(32.dp))
-        Button(modifier = Modifier.fillMaxWidth(), onClick =  submit) {
+
+        Button(modifier = Modifier.fillMaxWidth(), onClick = {
+            if(input== word) {
+
+            }
+
+        }) {
             Text(stringResource(id = R.string.submit))
         }
         Spacer(modifier = Modifier.height(16.dp))
@@ -73,10 +136,6 @@ fun Unscramble(modifier: Modifier){
     }
 }
 
-@Composable
-fun submitButton(text:Int , onClick:()->Unit, modifier: Modifier){
-
-}
 @Composable
 fun inputFunction(
     value: String,
@@ -98,7 +157,7 @@ fun inputFunction(
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun inputCard(){
+fun inputCard(word:String){
     var input by remember { mutableStateOf("") }
     Card(modifier = Modifier
         , elevation = CardDefaults.cardElevation(2.dp), shape = MaterialTheme.shapes.small) {
@@ -124,7 +183,7 @@ fun inputCard(){
             }
             Column(modifier = Modifier, verticalArrangement = Arrangement.Center) {
                 Text(
-                    text = "Word", style = MaterialTheme.typography.displaySmall,
+                    text = word, style = MaterialTheme.typography.displaySmall,
                     modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(12.dp))
@@ -159,6 +218,7 @@ fun DefaultPreview() {
         Unscramble(modifier = Modifier
             .fillMaxSize()
             .padding(16.dp))
+
 
     }
 }
