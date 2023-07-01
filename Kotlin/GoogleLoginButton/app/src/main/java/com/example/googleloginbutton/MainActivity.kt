@@ -47,11 +47,11 @@ fun GoogleSignUpButton() {
     , horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-        Surface(onClick = {clicked = !clicked}) {
+        Surface(onClick = {clicked = !clicked}, modifier = Modifier.border(1.dp, Color.Gray, shape = MaterialTheme.shapes.small)) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center,
-                modifier = Modifier.border(1.dp, Color.Gray, shape = MaterialTheme.shapes.small)
+                modifier = Modifier
                     .padding(
                         start = 16.dp, end = 16.dp,
                         top = 12.dp, bottom = 12.dp
@@ -71,7 +71,15 @@ fun GoogleSignUpButton() {
                     stringResource(id = if (!clicked) R.string.signup else R.string.creating_account),
                     style = MaterialTheme.typography.bodySmall
                 )
+                if (clicked) {
+                    CircularProgressIndicator(
+                        modifier = Modifier
+                            .padding(start = 12.dp)
+                            .size(16.dp),
+                        color = MaterialTheme.colorScheme.primary, strokeWidth = 2.dp,
+                    )
 
+                }
 
 
             }
