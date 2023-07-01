@@ -71,7 +71,15 @@ fun GoogleSignUpButton() {
                     stringResource(id = if (!clicked) R.string.signup else R.string.creating_account),
                     style = MaterialTheme.typography.bodySmall
                 )
+                if (clicked) {
+                    CircularProgressIndicator(
+                        modifier = Modifier
+                            .padding(start = 12.dp)
+                            .size(16.dp),
+                        color = MaterialTheme.colorScheme.primary, strokeWidth = 2.dp,
+                    )
 
+                }
 
 
             }
