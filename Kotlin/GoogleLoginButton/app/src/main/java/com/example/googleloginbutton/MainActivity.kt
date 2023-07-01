@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 
 import androidx.compose.foundation.border
 
@@ -56,7 +57,6 @@ fun GoogleSignUpButton() {
                         top = 12.dp, bottom = 12.dp
                     )
                     .animateContentSize(animationSpec = tween(durationMillis = 300, delayMillis = 1))
-
             ) {
 
                 Icon(
@@ -78,8 +78,7 @@ fun GoogleSignUpButton() {
                             .size(16.dp),
                         color = MaterialTheme.colorScheme.primary, strokeWidth = 2.dp,
                     )
-//                    for(x in 1..5000000){}
-//                    clicked = false
+
                 }
 
 
