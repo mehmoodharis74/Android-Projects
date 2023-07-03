@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -41,7 +42,7 @@ fun GoogleSignUpButton() {
     , horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-        Surface(modifier = Modifier,  shape = MaterialTheme.shapes.small) {
+        Surface(modifier = Modifier, border = BorderStroke(if(isSystemInDarkTheme())1.dp else 0.dp , color = Color.Gray) ,   shape = MaterialTheme.shapes.small) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center,
