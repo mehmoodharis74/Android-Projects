@@ -6,6 +6,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -26,7 +28,6 @@ class MainActivity : ComponentActivity() {
             GoogleLoginButtonTheme {
                 // A surface container using the 'background' color from the theme
                     GoogleSignUpButton()
-
             }
         }
     }
@@ -39,7 +40,7 @@ fun GoogleSignUpButton() {
     , horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-        Box(modifier = Modifier, contentAlignment = Alignment.Center) {
+        Surface(modifier = Modifier) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center,
@@ -48,7 +49,12 @@ fun GoogleSignUpButton() {
                         start = 16.dp, end = 16.dp,
                         top = 12.dp, bottom = 12.dp
                     )
-                    .animateContentSize(animationSpec = tween(durationMillis = 300, delayMillis = 1))
+                    .animateContentSize(
+                        animationSpec = tween(
+                            durationMillis = 300,
+                            delayMillis = 1
+                        )
+                    )
             ) {
 
                 Icon(
