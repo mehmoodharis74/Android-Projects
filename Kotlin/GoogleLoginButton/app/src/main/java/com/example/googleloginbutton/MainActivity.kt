@@ -66,7 +66,11 @@ fun GoogleSignUpButton() {
                     modifier = Modifier
                         .size(18.dp)
                 )
-
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    stringResource(id = if (!clicked) R.string.signup else R.string.creating_account),
+                    style = MaterialTheme.typography.bodySmall
+                )
 
                 if (clicked) {
                     CircularProgressIndicator(
