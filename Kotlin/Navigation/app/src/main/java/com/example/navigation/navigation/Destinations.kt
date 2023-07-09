@@ -7,6 +7,7 @@ object HomeScreen: Destinations {
     override val route: String = "home"
 }
 object DetailedScreen: Destinations {
+    const val incoming="screenNo"
     override val route: String = "detail"
 }
 object FinalScreen: Destinations {
