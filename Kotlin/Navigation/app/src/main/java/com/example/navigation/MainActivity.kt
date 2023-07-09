@@ -113,7 +113,7 @@ fun DetailedScreen(navigator: NavHostController, incomingScreenNo: Int?) {
 fun FinalScreen(navigator: NavHostController) {
     Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = "DetailedScreen", style = MaterialTheme.typography.displayLarge)
+        Text(text = "Third Screen", style = MaterialTheme.typography.displayLarge)
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { navigator.navigate(DetailedScreen.route+"/3") }) {
             Text(text ="Move To Second", modifier = Modifier
