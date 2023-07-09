@@ -51,7 +51,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Navigation() {
     val navigator = rememberNavController()
-    NavHost(navController = navigator, startDestination = DetailedScreen.route+"//"){
+    NavHost(navController = navigator, startDestination = HomeScreen.route){
         composable(HomeScreen.route){
             HomeScreen(navigator)
         }
