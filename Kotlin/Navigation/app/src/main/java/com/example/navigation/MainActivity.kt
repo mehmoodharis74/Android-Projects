@@ -17,11 +17,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.navigation.navigation.DetailedScreen
 import com.example.navigation.navigation.FinalScreen
 import com.example.navigation.navigation.HomeScreen
@@ -51,8 +54,13 @@ fun Navigation() {
         composable(HomeScreen.route){
             HomeScreen(navigator)
         }
-        composable(DetailedScreen.route){
-            DetailedScreen(navigator)
+        composable(DetailedScreen.route+"/{${DetailedScreen.incoming}}", arguments = listOf(
+            navArgument(DetailedScreen.incoming){type = NavType.IntType }
+        )){
+
+
+
+            DetailedScreen(navigator, it.arguments?.getInt(DetailedScreen.incoming))
         }
         composable(FinalScreen.route){
             FinalScreen(navigator)
@@ -60,14 +68,21 @@ fun Navigation() {
 
     }
 }
-
+@Preview(showBackground = true )
+@Composable
+fun HomeScreenPreview(){
+    val navigator = rememberNavController()
+    NavigationTheme {
+        HomeScreen(navigator =navigator )
+    }
+}
 @Composable
 fun HomeScreen(navigator: NavHostController) {
     Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally) {
         Text(text = "HomeScreen", style = MaterialTheme.typography.displayLarge)
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { navigator.navigate(DetailedScreen.route) }) {
+        Button(onClick = { navigator.navigate(DetailedScreen.route+"/1") }) {
             Text(text ="Go to Detail Screen", modifier = Modifier
                 .padding(16.dp)
                 .wrapContentSize())
@@ -75,10 +90,11 @@ fun HomeScreen(navigator: NavHostController) {
     }
 }
 @Composable
-fun DetailedScreen(navigator: NavHostController) {
+fun DetailedScreen(navigator: NavHostController, incomingScreenNo: Int?) {
     Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
         Text(text = "DetailedScreen", style = MaterialTheme.typography.displayLarge)
+        Text(text = incomingScreenNo.toString(), style = MaterialTheme.typography.labelMedium)
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { navigator.navigate(FinalScreen.route) }) {
             Text(text ="Move to Third ", modifier = Modifier
@@ -99,7 +115,7 @@ fun FinalScreen(navigator: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally) {
         Text(text = "DetailedScreen", style = MaterialTheme.typography.displayLarge)
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { navigator.popBackStack() }) {
+        Button(onClick = { navigator.navigate(DetailedScreen.route+"/3") }) {
             Text(text ="Move To Second", modifier = Modifier
                 .padding(16.dp)
                 .wrapContentSize())
