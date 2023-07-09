@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -54,13 +55,14 @@ fun Navigation() {
         composable(HomeScreen.route){
             HomeScreen(navigator)
         }
-        composable(DetailedScreen.route+"/{${DetailedScreen.incoming}}", arguments = listOf(
-            navArgument(DetailedScreen.incoming){type = NavType.IntType }
+        composable(DetailedScreen.route+"/{${DetailedScreen.incoming}}/{${DetailedScreen.message}}", arguments = listOf(
+            navArgument(DetailedScreen.incoming){type = NavType.IntType },
+            navArgument(DetailedScreen.message){type = NavType.StringType }
         )){
 
-
-
-            DetailedScreen(navigator, it.arguments?.getInt(DetailedScreen.incoming))
+            DetailedScreen(navigator,
+                it.arguments?.getInt(DetailedScreen.incoming),
+                it.arguments?.getString(DetailedScreen.message))
         }
         composable(FinalScreen.route){
             FinalScreen(navigator)
@@ -80,31 +82,37 @@ fun HomeScreenPreview(){
 fun HomeScreen(navigator: NavHostController) {
     Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = "HomeScreen", style = MaterialTheme.typography.displayLarge)
+        Text(text = "HomeScreen", style = MaterialTheme.typography.displaySmall)
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { navigator.navigate(DetailedScreen.route+"/1") }) {
+        Button(onClick = { navigator.navigate(DetailedScreen.route+"/1/HomeScreen ") }) {
             Text(text ="Go to Detail Screen", modifier = Modifier
-                .padding(16.dp)
+                .padding(8.dp)
                 .wrapContentSize())
         }
     }
 }
 @Composable
-fun DetailedScreen(navigator: NavHostController, incomingScreenNo: Int?) {
+fun DetailedScreen(navigator: NavHostController, incomingScreenNo: Int?, message: String?) {
     Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = "DetailedScreen", style = MaterialTheme.typography.displayLarge)
-        Text(text = incomingScreenNo.toString(), style = MaterialTheme.typography.labelMedium)
+        Text(text = "DetailedScreen", style = MaterialTheme.typography.displaySmall)
+        Row() {
+            if (message != null) {
+                Text(text = message, style = MaterialTheme.typography.labelMedium)
+            }
+            Text(text = incomingScreenNo.toString(), style = MaterialTheme.typography.labelMedium)
+        }
+
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { navigator.navigate(FinalScreen.route) }) {
             Text(text ="Move to Third ", modifier = Modifier
-                .padding(16.dp)
+                .padding(8.dp)
                 .wrapContentSize())
         }
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { navigator.popBackStack() }) {
             Text(text ="Go Back ", modifier = Modifier
-                .padding(16.dp)
+                .padding(8.dp)
                 .wrapContentSize())
         }
     }
@@ -113,9 +121,9 @@ fun DetailedScreen(navigator: NavHostController, incomingScreenNo: Int?) {
 fun FinalScreen(navigator: NavHostController) {
     Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = "Third Screen", style = MaterialTheme.typography.displayLarge)
+        Text(text = "Third Screen", style = MaterialTheme.typography.displaySmall)
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { navigator.navigate(DetailedScreen.route+"/3") }) {
+        Button(onClick = { navigator.navigate(DetailedScreen.route+"/3/FinalScreen ") }) {
             Text(text ="Move To Second", modifier = Modifier
                 .padding(16.dp)
                 .wrapContentSize())
