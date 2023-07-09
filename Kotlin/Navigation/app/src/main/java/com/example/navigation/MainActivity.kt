@@ -125,7 +125,7 @@ fun FinalScreen(navigator: NavHostController) {
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { navigator.navigate(DetailedScreen.route+"/3/FinalScreen ") }) {
             Text(text ="Move To Second", modifier = Modifier
-                .padding(16.dp)
+                .padding(8.dp)
                 .wrapContentSize())
         }
     }
