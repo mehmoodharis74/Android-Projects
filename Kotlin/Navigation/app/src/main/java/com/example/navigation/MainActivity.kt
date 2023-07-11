@@ -64,9 +64,7 @@ fun Navigation() {
                 it.arguments?.getInt(DetailedScreen.incoming),
                 it.arguments?.getString(DetailedScreen.message))
         }
-        composable(FinalScreen.route){
-            FinalScreen(navigator)
-        }
+
 
     }
 }
