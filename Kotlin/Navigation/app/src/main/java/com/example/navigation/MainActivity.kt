@@ -104,12 +104,8 @@ fun DetailedScreen(navigator: NavHostController, incomingScreenNo: Int?, message
         }
 
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { navigator.navigate(FinalScreen.route) }) {
-            Text(text ="Move to Third ", modifier = Modifier
-                .padding(8.dp)
-                .wrapContentSize())
-        }
 
+        Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { navigator.popBackStack() }) {
             Text(text ="Go Back ", modifier = Modifier
                 .padding(8.dp)
