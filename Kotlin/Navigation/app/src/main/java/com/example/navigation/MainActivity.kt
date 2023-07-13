@@ -110,7 +110,11 @@ fun DetailedScreen(navigator: NavHostController, incomingScreenNo: Int?, message
                 .wrapContentSize())
         }
         Spacer(modifier = Modifier.height(16.dp))
-
+        Button(onClick = { navigator.popBackStack() }) {
+            Text(text ="Go Back ", modifier = Modifier
+                .padding(8.dp)
+                .wrapContentSize())
+        }
     }
 }
 @Composable
