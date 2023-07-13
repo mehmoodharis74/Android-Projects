@@ -103,7 +103,7 @@ fun DetailedScreen(navigator: NavHostController, incomingScreenNo: Int?, message
             Text(text = incomingScreenNo.toString(), style = MaterialTheme.typography.labelMedium)
         }
 
-
+        Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { navigator.navigate(FinalScreen.route) }) {
             Text(text ="Move to Third ", modifier = Modifier
                 .padding(8.dp)
