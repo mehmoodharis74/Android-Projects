@@ -39,7 +39,6 @@ class MainActivity : ComponentActivity() {
                     var selectedIndex = rememberSaveable{ mutableStateOf(-1) }
 
 
-
                     Box(modifier = Modifier.padding(it)){
                         val navigator = rememberNavController()
                         NavHost(navController = navigator, startDestination = Home.route ){
