@@ -41,10 +41,7 @@ class MainActivity : ComponentActivity() {
 
                     Box(modifier = Modifier.padding(it)){
                         val navigator = rememberNavController()
-                        NavHost(navController = navigator, startDestination = Home.route ){
-                            composable(Home.route){ HomeScreen(navigator)}
-                            composable(Settings.route){ SettingScreen(navigator)}
-                        }
+
                     }
                 }
             }
