@@ -36,6 +36,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(bottomBar = {}){
                     val bottomList = listOf(Home,Settings)
 
+                    var selectedIndex = rememberSaveable{ mutableStateOf(-1) }
 
 
                     Box(modifier = Modifier.padding(it)){
