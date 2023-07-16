@@ -1,8 +1,10 @@
 package com.example.bottomnavigation
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,6 +21,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -58,10 +62,11 @@ fun MyBottomNavigation(navigator: NavHostController){
     val destinationList = listOf(Home,Settings)
     var selectedIndex = rememberSaveable{ mutableStateOf(-1) }
 
-    BottomNavigation() {destinationList.forEachIndexed { index, screens ->
+    BottomNavigation(modifier = Modifier.background(MaterialTheme.colorScheme.onSecondaryContainer)) {destinationList.forEachIndexed { index, screens ->
         BottomNavigationItem(
-            label = { Text(text = screens.title, mod) },
-            icon = { Icon( screens.icon, contentDescription = "icon") },
+            label = { Text(text = screens.title,
+                modifier = Modifier.padding(bottom = 4.dp), color = androidx.compose.ui.graphics.Color.White) },
+            icon = { Icon( screens.icon, contentDescription = "icon", modifier = Modifier.padding(bottom = 4.dp)) },
             selected = index==selectedIndex.value , onClick = {
                 selectedIndex.value = index
                 navigator.navigate(destinationList[index].route){
@@ -88,5 +93,27 @@ fun SettingScreen(navigator: NavHostController) {
     Box(modifier = Modifier.fillMaxSize(), Alignment.Center) {
         Text(text = "SettingScreen", style = MaterialTheme.typography.headlineLarge)
 
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Preview
+@Composable
+fun BottomPreview() {
+    BottomNavigationTheme {
+        val navigator = rememberNavController()
+        // A surface container using the 'background' color from the theme
+        Scaffold(bottomBar = { MyBottomNavigation(navigator = navigator)}){
+
+
+
+            Box(modifier = Modifier.padding(it)){
+
+                NavHost(navController = navigator, startDestination = Home.route ){
+                    composable(Home.route){ HomeScreen(navigator)}
+                    composable(Settings.route){ SettingScreen(navigator)}
+                }
+            }
+        }
     }
 }
