@@ -7,10 +7,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -22,7 +23,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.bottomnavigation.NavGraph.Home
-import com.example.bottomnavigation.NavGraph.Screens
 import com.example.bottomnavigation.NavGraph.Settings
 import com.example.bottomnavigation.ui.theme.BottomNavigationTheme
 
@@ -32,15 +32,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             BottomNavigationTheme {
+                val navigator = rememberNavController()
                 // A surface container using the 'background' color from the theme
-                Scaffold(bottomBar = {}){
-                    val bottomList = listOf(Home,Settings)
+                Scaffold(bottomBar = { MyBottomNavigation(navigator = navigator)}){
 
-                    var selectedIndex = rememberSaveable{ mutableStateOf(-1) }
 
 
                     Box(modifier = Modifier.padding(it)){
-                        val navigator = rememberNavController()
+
                         NavHost(navController = navigator, startDestination = Home.route ){
                             composable(Home.route){ HomeScreen(navigator)}
                             composable(Settings.route){ SettingScreen(navigator)}
@@ -53,6 +52,27 @@ class MainActivity : ComponentActivity() {
 
 }
 
+@Composable
+fun MyBottomNavigation(navigator: NavHostController){
+    val destinationList = listOf(Home,Settings)
+    var selectedIndex = rememberSaveable{ mutableStateOf(-1) }
+
+    BottomNavigation() {destinationList.forEachIndexed { index, screens ->
+        BottomNavigationItem(
+            label = { Text(text = screens.title) },
+            icon = { Text(text = screens.title) },
+            selected = index==selectedIndex.value , onClick = {
+                selectedIndex.value = index
+                navigator.navigate(destinationList[index].route){
+                    popUpTo(Home.route){saveState = true}
+                    launchSingleTop = true
+                    restoreState = true
+                }
+            })
+    }
+        
+    }
+}
 
 @Composable
 fun HomeScreen(navigator: NavHostController){
