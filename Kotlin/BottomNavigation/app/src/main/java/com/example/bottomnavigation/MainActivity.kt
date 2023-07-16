@@ -70,7 +70,7 @@ fun MyBottomNavigation(navigator: NavHostController){
             selected = index==selectedIndex.value , onClick = {
                 selectedIndex.value = index
                 navigator.navigate(destinationList[index].route){
-                    popUpTo(Home.route){saveState = true}
+                    popUpTo(Home.route)
                     launchSingleTop = true
                     restoreState = true
                 }
