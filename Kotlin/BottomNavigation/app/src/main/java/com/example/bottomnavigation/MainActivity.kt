@@ -60,7 +60,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyBottomNavigation(navigator: NavHostController){
     val destinationList = listOf(Home,Settings)
-    var selectedIndex = rememberSaveable{ mutableStateOf(-1) }
+    var selectedIndex = rememberSaveable{ mutableStateOf(0) }
 
     BottomNavigation(modifier = Modifier.background(MaterialTheme.colorScheme.onSecondaryContainer)) {destinationList.forEachIndexed { index, screens ->
         BottomNavigationItem(
