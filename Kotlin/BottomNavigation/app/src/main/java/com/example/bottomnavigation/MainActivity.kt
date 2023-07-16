@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
             BottomNavigationTheme {
                 // A surface container using the 'background' color from the theme
                 Scaffold(bottomBar = {}){
-                    val bottomList = listOf(Home,Settings)
+
 
                     var selectedIndex = rememberSaveable{ mutableStateOf(-1) }
 
