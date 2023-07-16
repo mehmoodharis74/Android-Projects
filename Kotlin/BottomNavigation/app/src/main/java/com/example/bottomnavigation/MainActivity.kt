@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -59,8 +60,8 @@ fun MyBottomNavigation(navigator: NavHostController){
 
     BottomNavigation() {destinationList.forEachIndexed { index, screens ->
         BottomNavigationItem(
-            label = { Text(text = screens.title) },
-            icon = { Text(text = screens.title) },
+            label = { Text(text = screens.title, mod) },
+            icon = { Icon( screens.icon, contentDescription = "icon") },
             selected = index==selectedIndex.value , onClick = {
                 selectedIndex.value = index
                 navigator.navigate(destinationList[index].route){
