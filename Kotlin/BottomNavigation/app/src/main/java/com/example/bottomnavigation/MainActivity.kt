@@ -109,7 +109,10 @@ fun BottomPreview() {
 
             Box(modifier = Modifier.padding(it)){
 
-
+                NavHost(navController = navigator, startDestination = Home.route ){
+                    composable(Home.route){ HomeScreen(navigator)}
+                    composable(Settings.route){ SettingScreen()}
+                }
             }
         }
     }
