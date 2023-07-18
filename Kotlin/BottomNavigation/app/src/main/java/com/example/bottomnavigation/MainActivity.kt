@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
 
                         NavHost(navController = navigator, startDestination = Home.route ){
                             composable(Home.route){ HomeScreen(navigator)}
-                            composable(Settings.route){ SettingScreen(navigator)}
+                            composable(Settings.route){ SettingScreen()}
                         }
                     }
                 }
@@ -89,7 +89,7 @@ fun HomeScreen(navigator: NavHostController){
     }
 }
 @Composable
-fun SettingScreen(navigator: NavHostController) {
+fun SettingScreen() {
     Box(modifier = Modifier.fillMaxSize(), Alignment.Center) {
         Text(text = "SettingScreen", style = MaterialTheme.typography.headlineLarge)
 
@@ -111,7 +111,7 @@ fun BottomPreview() {
 
                 NavHost(navController = navigator, startDestination = Home.route ){
                     composable(Home.route){ HomeScreen(navigator)}
-                    composable(Settings.route){ SettingScreen(navigator)}
+                    composable(Settings.route){ SettingScreen()}
                 }
             }
         }
