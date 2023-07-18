@@ -96,3 +96,24 @@ fun SettingScreen() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Preview
+@Composable
+fun BottomPreview() {
+    BottomNavigationTheme {
+        val navigator = rememberNavController()
+        // A surface container using the 'background' color from the theme
+        Scaffold(bottomBar = { MyBottomNavigation(navigator = navigator)}){
+
+
+
+            Box(modifier = Modifier.padding(it)){
+
+                NavHost(navController = navigator, startDestination = Home.route ){
+                    composable(Home.route){ HomeScreen(navigator)}
+                    composable(Settings.route){ SettingScreen()}
+                }
+            }
+        }
+    }
+}
