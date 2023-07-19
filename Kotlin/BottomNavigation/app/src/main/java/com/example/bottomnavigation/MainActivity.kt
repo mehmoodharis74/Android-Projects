@@ -91,7 +91,7 @@ fun HomeScreen(navigator: NavHostController){
 @Composable
 fun SettingScreen() {
     Box(modifier = Modifier.fillMaxSize(), Alignment.Center) {
-        Text(text = "SettingScreen", style = MaterialTheme.typography.headlineLarge)
+
 
     }
 }
