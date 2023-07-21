@@ -90,10 +90,7 @@ fun HomeScreen(navigator: NavHostController){
 }
 @Composable
 fun SettingScreen() {
-    Box(modifier = Modifier.fillMaxSize(), Alignment.Center) {
 
-
-    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
