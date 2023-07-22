@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ddb2326c-5ccc-4a79-8c41-9506de35d8fb" name="Changes" comment="" />
+    <list default="true" id="ddb2326c-5ccc-4a79-8c41-9506de35d8fb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Java/NotesApp" beforeDir="false" afterPath="$PROJECT_DIR$/Java/NotesApp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kotlin/Affirmations" beforeDir="false" afterPath="$PROJECT_DIR$/Kotlin/Affirmations" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,10 +16,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="master" />
+      </list>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2SADlZ1HBQstXM4oYlE8ADMDYZY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -27,7 +38,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "C:/Users/onesc/AndroidStudioProjects/Android-Projects/Kotlin/LoginPage"
+    "last_opened_file_path": "D:/Android_Studio/Android_Projects/Kotlin/Little Lemon App"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

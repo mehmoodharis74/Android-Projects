@@ -2,5 +2,10 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Java/Chatify-App" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Java/FinalProject" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Java/NotesApp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Java/contact_list" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Kotlin/Affirmations" vcs="Git" />
   </component>
 </project>
