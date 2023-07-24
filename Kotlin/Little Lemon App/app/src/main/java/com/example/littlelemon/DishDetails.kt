@@ -29,7 +29,7 @@ fun DishDetails(id: Int) {
         Column(verticalArrangement = Arrangement.spacedBy(10.dp),
         modifier = Modifier.padding(horizontal = 10.dp)) {
             Text(text =  dish.name, style = MaterialTheme.typography.h6)
-            Text(text =dish.description, style = MaterialTheme.typography.body1)
+
             Counter()
             Button(onClick = { /*TODO*/ }) {
                 Text(textAlign = TextAlign.Center,text = stringResource(id = R.string.add_for) + " $${dish.price}")
