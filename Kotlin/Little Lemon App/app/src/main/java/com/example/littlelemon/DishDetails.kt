@@ -64,16 +64,7 @@ fun Counter() {
             style = MaterialTheme.typography.h6,
             modifier = Modifier.padding(16.dp)
         )
-        TextButton(
-            onClick = {
-                counter++
-            }
-        ) {
-            Text(
-                text = "+",
-                style = MaterialTheme.typography.h4
-            )
-        }
+
     }
 }
 
