@@ -59,7 +59,11 @@ fun Counter() {
                 style = MaterialTheme.typography.h3
             )
         }
-
+        Text(
+            text = counter.toString(),
+            style = MaterialTheme.typography.h6,
+            modifier = Modifier.padding(16.dp)
+        )
         TextButton(
             onClick = {
                 counter++
