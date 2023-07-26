@@ -69,12 +69,13 @@ fun Counter() {
                 counter++
             }
         ) {
-            Text(
-                text = "+",
-                style = MaterialTheme.typography.h4
-            )
+
         }
     }
 }
 
-
+@Preview(showBackground = true)
+@Composable
+fun DishDetailsPreview() {
+    DishDetails(id = 1)
+}
