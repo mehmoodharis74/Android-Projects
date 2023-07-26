@@ -54,10 +54,7 @@ fun Counter() {
 
             }
         ) {
-            Text(
-                text = "-",
-                style = MaterialTheme.typography.h3
-            )
+
         }
         Text(
             text = counter.toString(),
