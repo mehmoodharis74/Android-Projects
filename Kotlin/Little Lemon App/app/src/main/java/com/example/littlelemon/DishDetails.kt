@@ -69,10 +69,7 @@ fun Counter() {
                 counter++
             }
         ) {
-            Text(
-                text = "+",
-                style = MaterialTheme.typography.h4
-            )
+
         }
     }
 }
