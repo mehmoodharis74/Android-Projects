@@ -1,7 +1,6 @@
 package com.example.techhub.activities
 
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -16,28 +15,22 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBackIos
-import androidx.compose.material.icons.filled.ArrowBackIosNew
-import androidx.compose.material.icons.filled.ArrowCircleLeft
-import androidx.compose.material.icons.filled.ArrowLeft
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -53,10 +46,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -68,14 +58,14 @@ import com.example.techhub.utils.TextInputField
 
 
 @Composable
-fun BackgroundPart(modifier: Modifier){
+fun BackgroundPart(navigator: NavHostController, modifier: Modifier){
 
     Column(modifier = modifier) {
-        IconButton(onClick = { /*TODO*/ }, modifier = Modifier.padding(start = 8.dp, top = 8.dp)) {
+        IconButton(onClick = {navigator.popBackStack()}, modifier = Modifier.padding(start = 8.dp, top = 8.dp)) {
             Image(imageVector = Icons.Default.ArrowBackIos, contentDescription = null,
                 colorFilter = ColorFilter.tint(Color.White))
         }
-            Column(modifier = Modifier.padding(start = 16.dp, top= 16.dp)) {
+            Column(modifier = Modifier.padding(start = 16.dp, top= 8.dp)) {
                 Text(text = stringResource(id = R.string.login), fontWeight = FontWeight.SemiBold,
                     fontSize = 30.sp, color = Color.White)
                 Text(text = stringResource(id = R.string.logindesc),
@@ -85,17 +75,16 @@ fun BackgroundPart(modifier: Modifier){
 
 
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(start = 16.dp)) {
-            Text(text = stringResource(id = R.string.tagline), fontSize = 28.sp,
+            Text(text = stringResource(id = R.string.tagline), fontSize = 24.sp,
             modifier = Modifier
-                .offset(8.dp)
+                .offset(4.dp)
                 .weight(1f), color = Color.White)
             Image(painter = painterResource(id = R.drawable.login_watch),
                 contentDescription = "watch", modifier = Modifier
-                    .size(200.dp)
-                    .offset(y = 10.dp), contentScale = ContentScale.Crop)
+                    .background(Color.Red)
+                    .fillMaxHeight().heightIn(150.dp, 200.dp),
+                contentScale = ContentScale.Crop)
         }
-
-
     }
 
 }
@@ -132,7 +121,7 @@ fun BottomSheetPart(navigator: NavHostController, modifier: Modifier){
             }) {
                 Text(text = stringResource(id = R.string.login), fontWeight = FontWeight.SemiBold, fontSize = 15.sp)
             }
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
             //Remember Me Section
             Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                 Text(text = stringResource(id = R.string.rememberme), fontSize = 13.sp, color = Color(0xFF767676), textAlign = TextAlign.Center,
@@ -197,7 +186,7 @@ fun MainLoginFunction(navigator:NavHostController){
         .background(Color.Black)
         .fillMaxSize()
         .verticalScroll(rememberScrollState())) {
-        BackgroundPart(modifier = Modifier)
+        BackgroundPart(navigator,modifier = Modifier)
         BottomSheetPart(navigator, modifier = Modifier.fillMaxSize())
     }
 

@@ -68,24 +68,20 @@ import com.example.techhub.utils.TextInputField
 
 
 @Composable
-fun SignUpBackgroundPart(modifier: Modifier){
+fun SignUpBackgroundPart(navigator:NavHostController,modifier: Modifier){
 
     Column(modifier = modifier) {
-        IconButton(onClick = { /*TODO*/ }, modifier = Modifier.padding(start = 8.dp, top = 8.dp)) {
+        IconButton(onClick = {navigator.popBackStack()}, modifier = Modifier.padding(start = 8.dp, top = 8.dp)) {
             Image(imageVector = Icons.Default.ArrowBackIos, contentDescription = null,
                 colorFilter = ColorFilter.tint(Color.White))
         }
-        Column(modifier = Modifier.padding(start = 16.dp, top= 16.dp)) {
+        Column(modifier = Modifier.padding(start = 16.dp, top= 8.dp)) {
             Text(text = stringResource(id = R.string.signup), fontWeight = FontWeight.SemiBold,
                 fontSize = 30.sp, color = Color.White)
             Text(text = stringResource(id = R.string.signupdesc),
                 fontSize = 13.sp,color = Color.White)
 
         }
-
-        Spacer(modifier = Modifier.height(40.dp))
-
-
     }
 
 }
@@ -189,7 +185,7 @@ fun MainSignUpFunction(navigator:NavHostController){
         .fillMaxSize()
         .background(Color.Black)
         .verticalScroll(rememberScrollState())) {
-        SignUpBackgroundPart(modifier = Modifier)
+        SignUpBackgroundPart(navigator,modifier = Modifier)
         SignUpBottomSheet(navigator, modifier = Modifier.fillMaxSize())
     }
 
