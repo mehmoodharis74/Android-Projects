@@ -78,11 +78,10 @@ fun BackgroundPart(navigator: NavHostController, modifier: Modifier){
             Text(text = stringResource(id = R.string.tagline), fontSize = 24.sp,
             modifier = Modifier
                 .offset(4.dp)
-                .weight(1f), color = Color.White)
+                .weight(.6f), color = Color.White)
             Image(painter = painterResource(id = R.drawable.login_watch),
                 contentDescription = "watch", modifier = Modifier
-                    .background(Color.Red)
-                    .fillMaxHeight().heightIn(150.dp, 200.dp),
+                    .weight(.4f),
                 contentScale = ContentScale.Crop)
         }
     }
