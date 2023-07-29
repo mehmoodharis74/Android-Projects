@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">techhub</string>
+    <string name="title_activity_welcome_screen">WelcomeScreen</string>
+    <string name="skip">Skip</string>
+    <string name="welcome">Welcome Tech Hub</string>
+    <string name="welcomedesc">Login or Sign in to continue</string>
+    <string name="signup">Sign up</string>
+    <string name="login">Log in</string>
+    <string name="logindesc">Hey there! Welcome back</string>
+    <string name="tagline">Here are your dream things</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgotpassword">Forgot Password?</string>
+    <string name="orcontinuewith">or continue with</string>
+    <string name="rememberme">Remember me</string>
+    <string name="signupdesc">Create an account to get started</string>
+    <string name="username">Name</string>
+    <string name="repeatPassword">Repeat Password</string>
+    <string name="alreadyhaveanaccount">Already have an account?</string>
+</resources>
