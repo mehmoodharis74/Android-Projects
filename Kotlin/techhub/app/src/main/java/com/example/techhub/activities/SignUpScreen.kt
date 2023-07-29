@@ -22,12 +22,15 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBackIos
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -43,6 +46,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -67,7 +71,11 @@ import com.example.techhub.utils.TextInputField
 fun SignUpBackgroundPart(modifier: Modifier){
 
     Column(modifier = modifier) {
-        Column(modifier = Modifier.padding(start = 16.dp, top= 32.dp)) {
+        IconButton(onClick = { /*TODO*/ }, modifier = Modifier.padding(start = 8.dp, top = 8.dp)) {
+            Image(imageVector = Icons.Default.ArrowBackIos, contentDescription = null,
+                colorFilter = ColorFilter.tint(Color.White))
+        }
+        Column(modifier = Modifier.padding(start = 16.dp, top= 16.dp)) {
             Text(text = stringResource(id = R.string.signup), fontWeight = FontWeight.SemiBold,
                 fontSize = 30.sp, color = Color.White)
             Text(text = stringResource(id = R.string.signupdesc),
@@ -111,13 +119,13 @@ fun SignUpBottomSheet(navigator: NavHostController, modifier: Modifier){
 
             TextInputField(value = username, label = R.string.username,
                 onValueChange = {username=it}, type =KeyboardType.Text, modifier = Modifier.fillMaxWidth())
-            Spacer(modifier = Modifier.size(6.dp))
+            Spacer(modifier = Modifier.size(8.dp))
             TextInputField(value = email, label = R.string.email,
                 onValueChange = {email=it}, type =KeyboardType.Email, modifier = Modifier.fillMaxWidth())
-            Spacer(modifier = Modifier.size(6.dp))
+            Spacer(modifier = Modifier.size(8.dp))
             TextInputField(value = password, label = R.string.password,
                 onValueChange = {password=it}, type =KeyboardType.Password, modifier = Modifier.fillMaxWidth())
-            Spacer(modifier = Modifier.size(6.dp))
+            Spacer(modifier = Modifier.size(8.dp))
             TextInputField(value = confirmpass, label = R.string.repeatPassword,
                 onValueChange = {confirmpass=it}, type =KeyboardType.Password , modifier = Modifier.fillMaxWidth())
 
@@ -142,27 +150,22 @@ fun SignUpBottomSheet(navigator: NavHostController, modifier: Modifier){
             //Social Media Login Options
             Spacer(modifier = Modifier.height(8.dp))
             Row(modifier=Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement=Arrangement.SpaceAround){
-                Box(modifier = Modifier.border(BorderStroke(1.dp,  color = Color(0xFF767676)), shape = RoundedCornerShape(100.dp))) {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Image(painter = painterResource(id = R.drawable.facebook_logo), contentDescription = "google",
-                            modifier = Modifier.size(25.dp))
-                    }
+                IconButton(onClick = { /*TODO*/ }, modifier = Modifier.widthIn(min = 80.dp).border(BorderStroke(1.dp,  color = Color(0xFF767676)), shape = RoundedCornerShape(100.dp))) {
+                    Image(painter = painterResource(id = R.drawable.facebook_logo), contentDescription = "google",
+                        modifier = Modifier.size(50.dp).padding(4.dp))
                 }
-                Box(modifier = Modifier.border(BorderStroke(1.dp,  color = Color(0xFF767676)), shape = RoundedCornerShape(100.dp))) {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Image(painter = painterResource(id = R.drawable.google_logo), contentDescription = "google",
-                            modifier = Modifier.size(50.dp))
-                    }
+                IconButton(onClick = { /*TODO*/ }, modifier = Modifier.widthIn(min = 80.dp).border(BorderStroke(1.dp,  color = Color(0xFF767676)), shape = RoundedCornerShape(100.dp))) {
+                    Image(painter = painterResource(id = R.drawable.google_logo), contentDescription = "google",
+                        modifier = Modifier.size(50.dp), contentScale = ContentScale.Crop)
                 }
-                Box(modifier = Modifier.border(BorderStroke(1.dp,  color = Color(0xFF767676)), shape = RoundedCornerShape(100.dp))) {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Image(painter = painterResource(id = R.drawable.twitter_logo), contentDescription = "google",
-                            modifier = Modifier.size(25.dp))
-                    }
+                IconButton(onClick = { /*TODO*/ }, modifier = Modifier.widthIn(min = 80.dp).border(BorderStroke(1.dp,  color = Color(0xFF767676)), shape = RoundedCornerShape(100.dp))) {
+                    Image(painter = painterResource(id = R.drawable.twitter_logo), contentDescription = "google",
+                        modifier = Modifier.size(50.dp).padding(4.dp))
                 }
+
             }
             //Already have an account Text
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement= Arrangement.Center, modifier = Modifier.padding(top = 12.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement= Arrangement.Center, modifier = Modifier.padding(vertical = 12.dp)) {
                 Text(text = stringResource(id = R.string.alreadyhaveanaccount), fontSize = 13.sp, color = Color(0xFF767676),
                     textAlign = TextAlign.Center,
                     modifier = Modifier
@@ -171,20 +174,19 @@ fun SignUpBottomSheet(navigator: NavHostController, modifier: Modifier){
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .wrapContentSize()
+                        .padding(start = 4.dp)
                         .clickable { navigator.navigate(LoginScreen.route) })
             }
 
 
         }
-        //--------------
-
-
     }
 }
 
 @Composable
 fun MainSignUpFunction(navigator:NavHostController){
-    Column(modifier = Modifier
+    Column(verticalArrangement = Arrangement.SpaceBetween, modifier = Modifier
+        .fillMaxSize()
         .background(Color.Black)
         .verticalScroll(rememberScrollState())) {
         SignUpBackgroundPart(modifier = Modifier)

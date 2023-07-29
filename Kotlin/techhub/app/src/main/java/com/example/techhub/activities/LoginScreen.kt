@@ -19,12 +19,20 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBackIos
+import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.ArrowCircleLeft
+import androidx.compose.material.icons.filled.ArrowLeft
 import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
@@ -39,6 +47,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -62,13 +71,18 @@ import com.example.techhub.utils.TextInputField
 fun BackgroundPart(modifier: Modifier){
 
     Column(modifier = modifier) {
-        Column(modifier = Modifier.padding(start = 16.dp, top= 32.dp)) {
-            Text(text = stringResource(id = R.string.login), fontWeight = FontWeight.SemiBold,
-                fontSize = 30.sp, color = Color.White)
-            Text(text = stringResource(id = R.string.logindesc),
-                fontSize = 13.sp,color = Color.White)
-
+        IconButton(onClick = { /*TODO*/ }, modifier = Modifier.padding(start = 8.dp, top = 8.dp)) {
+            Image(imageVector = Icons.Default.ArrowBackIos, contentDescription = null,
+                colorFilter = ColorFilter.tint(Color.White))
         }
+            Column(modifier = Modifier.padding(start = 16.dp, top= 16.dp)) {
+                Text(text = stringResource(id = R.string.login), fontWeight = FontWeight.SemiBold,
+                    fontSize = 30.sp, color = Color.White)
+                Text(text = stringResource(id = R.string.logindesc),
+                    fontSize = 13.sp,color = Color.White)
+
+            }
+
 
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(start = 16.dp)) {
             Text(text = stringResource(id = R.string.tagline), fontSize = 28.sp,
@@ -100,30 +114,32 @@ fun BottomSheetPart(navigator: NavHostController, modifier: Modifier){
         .padding(16.dp)) {
         Column(
             verticalArrangement = Arrangement.Bottom,
-            horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth().fillMaxHeight()
+            horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier
         ) {
             TextInputField(value = email, label = R.string.email,
                 onValueChange = {email=it}, type =KeyboardType.Email, modifier = Modifier.fillMaxWidth())
             Spacer(modifier = Modifier.size(8.dp))
             TextInputField(value = password, label = R.string.password,
                 onValueChange = {password=it}, type =KeyboardType.Password , modifier = Modifier.fillMaxWidth())
+            Spacer(modifier = Modifier.size(8.dp))
             Text(text = stringResource(id = R.string.forgotpassword), fontSize = 13.sp, color = Color(0xFF767676), textAlign = TextAlign.End,
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 4.dp))
-            Spacer(modifier = Modifier.height(8.dp))
+                .fillMaxWidth())
+            Spacer(modifier = Modifier.height(12.dp))
             //Login Button
             Button(modifier = Modifier.fillMaxWidth(), onClick = {
 
             }) {
                 Text(text = stringResource(id = R.string.login), fontWeight = FontWeight.SemiBold, fontSize = 15.sp)
             }
+            Spacer(modifier = Modifier.height(8.dp))
             //Remember Me Section
             Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                 Text(text = stringResource(id = R.string.rememberme), fontSize = 13.sp, color = Color(0xFF767676), textAlign = TextAlign.Center,
                     modifier = Modifier
                         .wrapContentWidth())
-                Switch(checked = checked, onCheckedChange ={checked=it}, modifier = Modifier)
+                Checkbox(checked = checked, onCheckedChange = {checked=it}, modifier = Modifier
+                    .wrapContentWidth())
             }
             //Other Login Options Section
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
@@ -137,34 +153,50 @@ fun BottomSheetPart(navigator: NavHostController, modifier: Modifier){
             //Social Media Login Options
             Spacer(modifier = Modifier.height(8.dp))
             Row(modifier=Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement=Arrangement.SpaceAround){
-                Box(modifier = Modifier.border(BorderStroke(1.dp,  color = Color(0xFF767676)), shape = RoundedCornerShape(100.dp))) {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Image(painter = painterResource(id = R.drawable.facebook_logo), contentDescription = "google",
-                            modifier = Modifier.size(25.dp))
-                    }
+                IconButton(onClick = { /*TODO*/ }, modifier = Modifier
+                    .widthIn(min = 80.dp)
+                    .border(
+                        BorderStroke(1.dp, color = Color(0xFF767676)),
+                        shape = RoundedCornerShape(100.dp)
+                    )) {
+                    Image(painter = painterResource(id = R.drawable.facebook_logo), contentDescription = "google",
+                        modifier = Modifier
+                            .size(50.dp)
+                            .padding(4.dp))
                 }
-                Box(modifier = Modifier.border(BorderStroke(1.dp,  color = Color(0xFF767676)), shape = RoundedCornerShape(100.dp))) {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Image(painter = painterResource(id = R.drawable.google_logo), contentDescription = "google",
-                            modifier = Modifier.size(50.dp))
-                    }
+                IconButton(onClick = { /*TODO*/ }, modifier = Modifier
+                    .widthIn(min = 80.dp)
+                    .border(
+                        BorderStroke(1.dp, color = Color(0xFF767676)),
+                        shape = RoundedCornerShape(100.dp)
+                    )) {
+                    Image(painter = painterResource(id = R.drawable.google_logo), contentDescription = "google",
+                        modifier = Modifier.size(50.dp), contentScale = ContentScale.Crop)
                 }
-                Box(modifier = Modifier.border(BorderStroke(1.dp,  color = Color(0xFF767676)), shape = RoundedCornerShape(100.dp))) {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Image(painter = painterResource(id = R.drawable.twitter_logo), contentDescription = "google",
-                            modifier = Modifier.size(25.dp))
-                    }
+                IconButton(onClick = { /*TODO*/ }, modifier = Modifier
+                    .widthIn(min = 80.dp)
+                    .border(
+                        BorderStroke(1.dp, color = Color(0xFF767676)),
+                        shape = RoundedCornerShape(100.dp)
+                    )) {
+                    Image(painter = painterResource(id = R.drawable.twitter_logo), contentDescription = "google",
+                        modifier = Modifier
+                            .size(50.dp)
+                            .padding(4.dp))
                 }
 
             }
-
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
 
 @Composable
 fun MainLoginFunction(navigator:NavHostController){
-    Column(modifier = Modifier.background(Color.Black).verticalScroll(rememberScrollState())) {
+    Column(verticalArrangement = Arrangement.SpaceBetween, modifier = Modifier
+        .background(Color.Black)
+        .fillMaxSize()
+        .verticalScroll(rememberScrollState())) {
         BackgroundPart(modifier = Modifier)
         BottomSheetPart(navigator, modifier = Modifier.fillMaxSize())
     }
