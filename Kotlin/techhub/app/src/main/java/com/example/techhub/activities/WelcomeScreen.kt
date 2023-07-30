@@ -50,10 +50,7 @@ fun UpperPart(navigator: NavHostController, modifier: Modifier) {
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End, verticalAlignment = Alignment.CenterVertically) {
                 Text(text = stringResource(id = R.string.skip), modifier = Modifier
                     .wrapContentWidth(), fontSize = 13.sp)
-                Image(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = "arrow right",
-                    Modifier
-                        .width(15.dp)
-                        .height(15.dp))
+
             }
         }
         Text(text = stringResource(id = R.string.welcome),
