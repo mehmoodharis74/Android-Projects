@@ -57,7 +57,7 @@ fun UpperPart(navigator: NavHostController, modifier: Modifier) {
             fontSize = 20.sp, fontWeight = FontWeight.SemiBold,
             modifier = Modifier.padding(bottom=8.dp)
             )
-        Text(text = stringResource(id = R.string.welcomedesc), fontSize =15.sp, color = Color(0xFF767676))
+
 
 
     }
