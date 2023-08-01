@@ -91,7 +91,7 @@ fun BackgroundPart(navigator: NavHostController, modifier: Modifier){
 
 @Composable
 fun BottomSheetPart(navigator: NavHostController, modifier: Modifier){
-    var email by rememberSaveable { mutableStateOf("") }
+
     var password by rememberSaveable { mutableStateOf("") }
     var checked by rememberSaveable { mutableStateOf(false)}
     Box(modifier = modifier
