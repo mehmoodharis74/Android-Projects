@@ -167,10 +167,7 @@ fun BottomSheetPart(navigator: NavHostController, modifier: Modifier){
                         BorderStroke(1.dp, color = Color(0xFF767676)),
                         shape = RoundedCornerShape(100.dp)
                     )) {
-                    Image(painter = painterResource(id = R.drawable.twitter_logo), contentDescription = "google",
-                        modifier = Modifier
-                            .size(50.dp)
-                            .padding(4.dp))
+
                 }
 
             }
